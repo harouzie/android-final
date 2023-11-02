@@ -1,5 +1,10 @@
 <resources>
-    <string name="app_name">Flashcards</string>
+    <string name="app_name">App Name</string>
+    <string name="welcome">welcome !</string>
+    <string name="flashcard_title">Flashcards</string>
+    <string name="quiz_title">Quizzes</string>
+    <string name="login">Login</string>
+    <string name="login_question">Used [AppName] already and have an account?</string>
     <string name="question">QUESTION</string>
     <string name="answer">ANSWER</string>
 </resources>

@@ -4,7 +4,12 @@
     <string name="flashcard_title">Flashcards</string>
     <string name="quiz_title">Quizzes</string>
     <string name="login">Login</string>
-    <string name="login_question">Used [AppName] already and have an account?</string>
     <string name="question">QUESTION</string>
     <string name="answer">ANSWER</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login_question">Do you have an account?</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="confirm">Confirm</string>
 </resources>

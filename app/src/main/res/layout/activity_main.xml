@@ -114,10 +114,11 @@
             android:id="@+id/logInButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/login"
+            android:text="@string/log_in"
             android:textSize="16sp"
             android:maxLines="1"
             android:layout_marginHorizontal="40dp"
+            android:onClick="loginButtonClick"
             android:layout_weight="5"/>
 
         <androidx.appcompat.widget.AppCompatButton
@@ -128,6 +129,7 @@
             android:textSize="16sp"
             android:maxLines="1"
             android:layout_marginHorizontal="40dp"
+            android:onClick="signUpButtonClick"
             android:layout_weight="5"/>
 
     </LinearLayout>

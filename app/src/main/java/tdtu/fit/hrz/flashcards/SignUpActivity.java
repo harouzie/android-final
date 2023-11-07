@@ -28,35 +28,30 @@ public class SignUpActivity extends AppCompatActivity {
         secondPasswordText = findViewById(R.id.passwordConfirmEditText);
         confirmSignUp = findViewById(R.id.signUpConfirmButton);
 
+    }
 
-        confirmSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                username = usernameText.getText().toString();
-                password1 = firstPasswordText.getText().toString();
-                password2 = secondPasswordText.getText().toString();
+    public void signUpConfirmButtonClick(View view) {
+        username = usernameText.getText().toString();
+        password1 = firstPasswordText.getText().toString();
+        password2 = secondPasswordText.getText().toString();
 
-                if (password1.length() < 8 || password2.length() < 8) {
-                    Toast.makeText(SignUpActivity.this, "Passwords too short! It must" +
-                            " be at least 8 characters",
-                            Toast.LENGTH_SHORT).show();
-                } else if (username.length() < 6) {
-                    Toast.makeText(SignUpActivity.this, "Username too short! It must" +
+        if (username.length() < 6) {
+            Toast.makeText(SignUpActivity.this, "Username too short! It must" +
                             " be at least 6 characters",
-                            Toast.LENGTH_SHORT).show();
-                } else if (!password1.equals(password2)) {
-                    Toast.makeText(SignUpActivity.this, "Passwords unmatched!",
-                            Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(SignUpActivity.this, "Sign up successfully!",
-                            Toast.LENGTH_SHORT).show();
-                }
+                    Toast.LENGTH_SHORT).show();
+        } else if (password1.length() < 8 || password2.length() < 8) {
+            Toast.makeText(SignUpActivity.this, "Password too short! It must" +
+                            " be at least 8 characters",
+                    Toast.LENGTH_SHORT).show();
+        } else if (!password1.equals(password2)) {
+            Toast.makeText(SignUpActivity.this, "Passwords unmatched!",
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(SignUpActivity.this, "Sign up successfully!",
+                    Toast.LENGTH_SHORT).show();
+        }
 
-                // Already exist username handle later
-
-            }
-        });
-
+        // Already exist username handle later
     }
 
 }

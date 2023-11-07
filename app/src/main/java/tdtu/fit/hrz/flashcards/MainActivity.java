@@ -17,15 +17,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         signUpButton = findViewById(R.id.signUpButton);
-
-        signUpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
-
-                // Bắt đầu Activity mới
-                startActivity(intent);
-            }
-        });
     }
+
+    public void signUpButtonClick(View view) {
+        Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
+        startActivity(intent);
+    }
+
+    public void loginButtonClick(View view) {
+        Intent intent = new Intent(MainActivity.this, LogInActivity.class);
+        startActivity(intent);
+    }
+
 }

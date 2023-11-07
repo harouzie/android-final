@@ -7,11 +7,11 @@
     tools:context=".SignUpActivity">
 
     <TextView
-        android:id="@+id/signUpTitle"
+        android:id="@+id/loginTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:text="@string/sign_up"
+        android:text="@string/log_in"
         android:textSize="40sp"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
@@ -21,7 +21,7 @@
         android:id="@+id/usernameLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/signUpTitle"
+        android:layout_below="@id/loginTitle"
         android:layout_marginTop="80dp"
         android:orientation="horizontal">
 
@@ -95,58 +95,14 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/confirmPasswordLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/passwordLayout"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/confirmPasswordTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:text="@string/confirm_password"
-            android:textSize="18sp"
-            android:layout_weight="4"/>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/passwordConfirmEditTextLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true"
-            app:boxBackgroundMode="none"
-            android:layout_marginHorizontal="15dp"
-            android:layout_weight="7">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/passwordConfirmEditText"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:padding="0dp"
-                android:paddingStart="3dp"
-                android:paddingEnd="0dp"
-                android:background="@drawable/edit_text_border"
-                android:textCursorDrawable="@drawable/text_cursor"
-                android:inputType="textPassword"
-                android:maxLength="18"
-                android:textSize="17sp"
-                android:textColor="@color/black" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-    </LinearLayout>
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signUpConfirmButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/confirmPasswordLayout"
-        android:layout_marginTop="60dp"
+        android:layout_below="@id/passwordLayout"
+        android:layout_marginTop="120dp"
         android:text="@string/confirm"
         android:layout_centerHorizontal="true"
-        android:onClick="signUpConfirmButtonClick"/>
+        android:onClick="logInConfirmButtonClick"/>
 
 </RelativeLayout>

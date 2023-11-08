@@ -18,132 +18,177 @@
         android:layout_marginTop="40dp"/>
 
     <LinearLayout
-        android:id="@+id/usernameLayout"
+        android:id="@+id/inputLayout"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/simple_stroke_background"
         android:layout_below="@id/signUpTitle"
-        android:layout_marginTop="80dp"
-        android:orientation="horizontal">
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="80dp">
 
-        <TextView
-            android:id="@+id/usernameTitle"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/usernameLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:text="@string/username"
-            android:textSize="18sp"
-            android:layout_weight="4"/>
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/usernameEditText"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:inputType="text"
-            android:background="@drawable/edit_text_border"
-            android:textCursorDrawable="@drawable/text_cursor"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="15dp"
-            android:textSize="17sp"
-            android:maxLength="18"
-            android:paddingLeft="3dp"
-            android:layout_weight="7"/>
+            <TextView
+                android:id="@+id/usernameTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="@string/username"
+                android:textSize="18sp"
+                android:layout_weight="4"/>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/passwordLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/usernameLayout"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/passwordTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:text="@string/password"
-            android:textSize="18sp"
-            android:layout_weight="4"/>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/passwordEditTextLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true"
-            app:boxBackgroundMode="none"
-            android:layout_marginHorizontal="15dp"
-            android:layout_weight="7">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/passwordEditText"
-                android:layout_width="match_parent"
+            <EditText
+                android:id="@+id/usernameEditText"
+                android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:padding="0dp"
-                android:paddingStart="3dp"
-                android:paddingEnd="0dp"
+                android:inputType="text"
                 android:background="@drawable/edit_text_border"
                 android:textCursorDrawable="@drawable/text_cursor"
-                android:inputType="textPassword"
-                android:maxLength="18"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="15dp"
                 android:textSize="17sp"
-                android:textColor="@color/black" />
+                android:maxLength="18"
+                android:paddingLeft="3dp"
+                android:layout_weight="7"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/confirmPasswordLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/passwordLayout"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/confirmPasswordTitle"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/displayNameLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:text="@string/confirm_password"
-            android:textSize="18sp"
-            android:layout_weight="4"/>
+            android:layout_below="@id/usernameLayout"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/passwordConfirmEditTextLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true"
-            app:boxBackgroundMode="none"
-            android:layout_marginHorizontal="15dp"
-            android:layout_weight="7">
+            <TextView
+                android:id="@+id/displayNameTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="@string/display_name"
+                android:textSize="18sp"
+                android:layout_weight="4"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/passwordConfirmEditText"
-                android:layout_width="match_parent"
+            <EditText
+                android:id="@+id/displayNameEditText"
+                android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:padding="0dp"
-                android:paddingStart="3dp"
-                android:paddingEnd="0dp"
+                android:inputType="text"
                 android:background="@drawable/edit_text_border"
                 android:textCursorDrawable="@drawable/text_cursor"
-                android:inputType="textPassword"
-                android:maxLength="18"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="15dp"
                 android:textSize="17sp"
-                android:textColor="@color/black" />
+                android:maxLength="18"
+                android:paddingLeft="3dp"
+                android:layout_weight="7"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/passwordLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/displayNameLayout"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/passwordTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="@string/password"
+                android:textSize="18sp"
+                android:layout_weight="4"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordEditTextLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true"
+                app:boxBackgroundMode="none"
+                android:layout_marginHorizontal="15dp"
+                android:layout_weight="7">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:padding="0dp"
+                    android:paddingStart="3dp"
+                    android:paddingEnd="0dp"
+                    android:background="@drawable/edit_text_border"
+                    android:textCursorDrawable="@drawable/text_cursor"
+                    android:inputType="textPassword"
+                    android:maxLength="18"
+                    android:textSize="17sp"
+                    android:textColor="@color/black" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/confirmPasswordLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_below="@id/passwordLayout"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/confirmPasswordTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="@string/confirm_password"
+                android:textSize="18sp"
+                android:layout_weight="4"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordConfirmEditTextLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true"
+                app:boxBackgroundMode="none"
+                android:layout_marginHorizontal="15dp"
+                android:layout_weight="7">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordConfirmEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:padding="0dp"
+                    android:paddingStart="3dp"
+                    android:paddingEnd="0dp"
+                    android:background="@drawable/edit_text_border"
+                    android:textCursorDrawable="@drawable/text_cursor"
+                    android:inputType="textPassword"
+                    android:maxLength="18"
+                    android:textSize="17sp"
+                    android:textColor="@color/black" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signUpConfirmButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/confirmPasswordLayout"
+        android:layout_below="@id/inputLayout"
         android:layout_marginTop="60dp"
         android:text="@string/confirm"
         android:layout_centerHorizontal="true"

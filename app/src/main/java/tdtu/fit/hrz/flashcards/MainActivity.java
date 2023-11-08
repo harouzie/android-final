@@ -29,4 +29,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void quizLayoutClick(View view) {
+        Toast.makeText(this, "Quiz Activity was chosen!", Toast.LENGTH_SHORT).show();
+    }
+
+    public void flashcardLayoutClick(View view) {
+        Toast.makeText(this, "FlashCard Activity was chosen!", Toast.LENGTH_SHORT).show();
+    }
 }

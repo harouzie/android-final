@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "96516837387",
+    "firebase_url": "https://flashcards-mobile-final-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "flashcards-mobile-final",
+    "storage_bucket": "flashcards-mobile-final.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96516837387:android:ec7ffdd1d8e4c0f48e370e",
+        "android_client_info": {
+          "package_name": "tdtu.fit.hrz.flashcards"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSvtOxewh68DuO4HEWIuW_bsSBFWF9rCc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

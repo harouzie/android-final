@@ -41,12 +41,16 @@
             android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="5">
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/main_flashcards_background"
+            android:layout_weight="5"
+            android:onClick="flashcardLayoutClick">
 
             <ImageView
                 android:id="@+id/flashcardsImage"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
+                android:layout_marginTop="8dp"
                 android:layout_weight="5"
                 android:layout_gravity="center"
                 android:src="@drawable/flashcard_icon"/>
@@ -58,8 +62,10 @@
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:text="@string/flashcard_title"
-                android:textSize="25sp"/>
+                android:textSize="23sp"
+                android:textStyle="bold"/>
 
         </LinearLayout>
 
@@ -68,12 +74,16 @@
             android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="5">
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/main_quiz_background"
+            android:layout_weight="5"
+            android:onClick="quizLayoutClick">
 
             <ImageView
                 android:id="@+id/quizImage"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
+                android:layout_marginTop="8dp"
                 android:layout_weight="5"
                 android:layout_gravity="center"
                 android:src="@drawable/quiz_icon"/>
@@ -85,8 +95,10 @@
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:text="@string/quiz_title"
-                android:textSize="25sp"/>
+                android:textSize="23sp"
+                android:textStyle="bold"/>
 
         </LinearLayout>
 

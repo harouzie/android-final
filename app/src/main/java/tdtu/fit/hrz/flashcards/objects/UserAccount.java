@@ -1,19 +1,29 @@
 package tdtu.fit.hrz.flashcards.objects;
 
 public class UserAccount {
-    String username, password;
+    private String username, password, displayName;
 
-    public UserAccount(String input_username, String input_password) {
-        this.username = input_username;
-        this.password = input_password;
+    public UserAccount() {};
+
+    public UserAccount(String username, String password, String displayName) {
+        this.username = username;
+        this.password = password;
+        this.displayName = displayName;
     }
 
     public String getUsername() {
-        return username;
+        return this.username;
     }
-
     public String getPassword() {
-        return password;
+        return this.password;
+    }
+    public String getDisplayName() {
+        return this.displayName;
+    }
+    public void setUsername(String username) { this.username = username; }
+    public void setPassword(String password) { this.password = password; }
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
 }

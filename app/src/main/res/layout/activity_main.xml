@@ -4,28 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/orange_blue_gradient"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/appNameTextView"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/appNameCardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:text="@string/app_name"
-        android:textStyle="bold"
-        android:textSize="40sp"/>
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp">
+
+        <TextView
+            android:id="@+id/appNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            android:text="@string/app_name"
+            android:textStyle="bold"
+            android:textSize="40sp"/>
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/welcomeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/appNameTextView"
+        android:layout_below="@id/appNameCardView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="12dp"
         android:text="@string/welcome"
-        android:textSize="25sp"/>
+        android:textSize="25sp"
+        android:textColor="@color/white"/>
 
     <LinearLayout
         android:id="@+id/optionsLayout"
@@ -42,7 +54,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:background="@drawable/main_flashcards_background"
+            android:background="@drawable/blue_gradient_l2r"
             android:layout_weight="5"
             android:onClick="flashcardLayoutClick">
 
@@ -75,7 +87,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:background="@drawable/main_quiz_background"
+            android:background="@drawable/orange_gradient_r2l"
             android:layout_weight="5"
             android:onClick="quizLayoutClick">
 
@@ -109,10 +121,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/optionsLayout"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="160dp"
         android:layout_centerHorizontal="true"
         android:text="@string/login_question"
-        android:textSize="14sp"/>
+        android:textSize="14sp"
+        android:textColor="@color/white"/>
 
     <LinearLayout
         android:id="@+id/loginOptionsLayout"
@@ -125,7 +138,8 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/logInButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/default_button"
             android:text="@string/log_in"
             android:textSize="16sp"
             android:maxLines="1"
@@ -136,7 +150,8 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/signUpButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/default_button"
             android:text="@string/sign_up"
             android:textSize="16sp"
             android:maxLines="1"
@@ -151,9 +166,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="15dp"
         android:src="@drawable/tdtu_logo" />
+
+    <LinearLayout
+        android:id="@+id/welcomeUserLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/optionsLayout"
+        android:layout_marginTop="80dp"
+        android:paddingHorizontal="40dp">
+
+        <TextView
+            android:id="@+id/welcomeUser"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:layout_weight="6"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/logoutButton"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:text="@string/log_out"
+            android:background="@drawable/default_button"
+            android:layout_weight="3"
+            android:visibility="gone"/>
+
+
+    </LinearLayout>
 
 </RelativeLayout>

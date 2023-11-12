@@ -1,18 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/orange_blue_gradient"
     tools:context=".MainActivity">
 
-    <TextView
+    <androidx.cardview.widget.CardView
+        android:id="@+id/appNameCardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/appNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            android:text="@string/app_name"
+            android:textStyle="bold"
+            android:textSize="40sp"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/welcomeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appNameCardView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        android:text="@string/welcome"
+        android:textSize="25sp"
+        android:textColor="@color/white"/>
+
+    <LinearLayout
+        android:id="@+id/optionsLayout"
+        android:orientation="horizontal"
+        android:baselineAligned="false"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_below="@id/welcomeTextView"
+        android:layout_marginTop="70dp">
+
+        <LinearLayout
+            android:id="@+id/flashcardsOption"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/blue_gradient_l2r"
+            android:layout_weight="5"
+            android:onClick="flashcardLayoutClick">
+
+            <ImageView
+                android:id="@+id/flashcardsImage"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="5"
+                android:layout_gravity="center"
+                android:src="@drawable/flashcard_icon"/>
+
+            <TextView
+                android:id="@+id/flashcardsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/flashcard_title"
+                android:textSize="23sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/quizOption"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/orange_gradient_r2l"
+            android:layout_weight="5"
+            android:onClick="quizLayoutClick">
+
+            <ImageView
+                android:id="@+id/quizImage"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="5"
+                android:layout_gravity="center"
+                android:src="@drawable/quiz_icon"/>
+
+            <TextView
+                android:id="@+id/quizTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/quiz_title"
+                android:textSize="23sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/haveAccountTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/optionsLayout"
+        android:layout_marginTop="160dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/login_question"
+        android:textSize="14sp"
+        android:textColor="@color/white"/>
+
+    <LinearLayout
+        android:id="@+id/loginOptionsLayout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/haveAccountTitle"
+        android:layout_marginTop="10dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/logInButton"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/default_button"
+            android:text="@string/log_in"
+            android:textSize="16sp"
+            android:maxLines="1"
+            android:layout_marginHorizontal="40dp"
+            android:onClick="loginButtonClick"
+            android:layout_weight="5"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/signUpButton"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/default_button"
+            android:text="@string/sign_up"
+            android:textSize="16sp"
+            android:maxLines="1"
+            android:layout_marginHorizontal="40dp"
+            android:onClick="signUpButtonClick"
+            android:layout_weight="5"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/tdtuLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/tdtu_logo" />
+
+    <LinearLayout
+        android:id="@+id/welcomeUserLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/optionsLayout"
+        android:layout_marginTop="80dp"
+        android:paddingHorizontal="40dp">
+
+        <TextView
+            android:id="@+id/welcomeUser"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:layout_weight="6"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/logoutButton"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:text="@string/log_out"
+            android:background="@drawable/default_button"
+            android:layout_weight="3"
+            android:visibility="gone"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

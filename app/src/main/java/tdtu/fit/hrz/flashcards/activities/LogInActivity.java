@@ -1,4 +1,4 @@
-package tdtu.fit.hrz.flashcards;
+package tdtu.fit.hrz.flashcards.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import tdtu.fit.hrz.flashcards.R;
 import tdtu.fit.hrz.flashcards.objects.UserAccount;
 
 public class LogInActivity extends AppCompatActivity {

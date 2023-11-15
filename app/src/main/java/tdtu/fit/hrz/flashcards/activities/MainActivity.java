@@ -1,4 +1,4 @@
-package tdtu.fit.hrz.flashcards;
+package tdtu.fit.hrz.flashcards.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import tdtu.fit.hrz.flashcards.R;
 
 public class MainActivity extends AppCompatActivity {
 

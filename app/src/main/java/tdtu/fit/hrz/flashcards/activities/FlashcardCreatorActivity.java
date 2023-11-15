@@ -1,4 +1,4 @@
-package tdtu.fit.hrz.flashcards;
+package tdtu.fit.hrz.flashcards.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
+import tdtu.fit.hrz.flashcards.R;
 
 public class FlashcardCreatorActivity extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;

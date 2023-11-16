@@ -54,5 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void flashcardLayoutClick(View view) {
         Toast.makeText(this, "FlashCard Activity was chosen!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, FlashcardPreviewActivity.class);
+        startActivity(intent);
     }
 }

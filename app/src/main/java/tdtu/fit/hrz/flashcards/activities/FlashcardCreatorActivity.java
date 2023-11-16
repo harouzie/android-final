@@ -23,10 +23,10 @@ public class FlashcardCreatorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flashcard_creator);
 
-        questionImageView = findViewById(R.id.questionImage);
-        btnAddQuesImg = findViewById(R.id.btnAddQuesImg);
-
-        btnAddQuesImg.setOnClickListener(v -> openImagePicker());
+        // TODO add image for flashcard
+//        questionImageView = findViewById(R.id.questionImage);
+//        btnAddQuesImg = findViewById(R.id.btnAddQuesImg);
+//        btnAddQuesImg.setOnClickListener(v -> openImagePicker());
     }
     private void openImagePicker() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);

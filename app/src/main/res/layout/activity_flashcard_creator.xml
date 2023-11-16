@@ -10,13 +10,13 @@
         android:id="@+id/flashcardQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp"
-        android:elevation="15dp"
+        android:layout_marginBottom="7dp"
+        android:foreground="?attr/selectableItemBackground"
         app:cardCornerRadius="10dp"
-        android:backgroundTint="@color/baby_blue">
+        app:cardElevation="5dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -41,19 +41,19 @@
                 android:textSize="14sp"
                 android:hint="lorem ipsum"/>
 
-            <ImageButton
-                android:id="@+id/btnAddQuesImg"
-                android:src="@android:drawable/ic_menu_gallery"
-                android:layout_below="@id/question"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <ImageView
-                android:id="@+id/questionImage"
-                android:layout_below="@id/btnAddQuesImg"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:maxHeight="200dp"
-                android:background="@color/white"/>
+<!--            <ImageButton-->
+<!--                android:id="@+id/btnAddQuesImg"-->
+<!--                android:src="@android:drawable/ic_menu_gallery"-->
+<!--                android:layout_below="@id/question"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"/>-->
+<!--            <ImageView-->
+<!--                android:id="@+id/questionImage"-->
+<!--                android:layout_below="@id/btnAddQuesImg"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:maxHeight="200dp"-->
+<!--                android:background="@color/white"/>-->
 
         </RelativeLayout>
 
@@ -65,13 +65,13 @@
         android:layout_below="@id/flashcardQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp"
-        android:elevation="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="7dp"
+        android:foreground="?attr/selectableItemBackground"
         app:cardCornerRadius="10dp"
-        android:backgroundTint="@color/pastel_green">
+        app:cardElevation="5dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -121,7 +121,8 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:text="DISCARD"
-            android:layout_margin="5dp"/>
+            android:layout_marginRight="10dp"
+            android:background="@drawable/button_rounded_square"/>
 
         <Button
             android:layout_weight="1"
@@ -131,8 +132,10 @@
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:text="SAVE"
-            android:layout_margin="5dp"/>
+            android:text="CREATE"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/button_rounded_square"
+            android:backgroundTint="@color/gray"/>
 
     </LinearLayout>
 

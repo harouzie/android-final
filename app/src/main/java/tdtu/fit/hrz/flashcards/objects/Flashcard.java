@@ -9,6 +9,7 @@ public class Flashcard {
 
     private String question;
     private String answer;
+    private boolean flipped = false;
 
     public Flashcard(){
         question = "";
@@ -29,5 +30,16 @@ public class Flashcard {
 
     public void setAnswer(String answer) {
         this.answer = answer;
+    }
+
+    public void flip(){
+        this.flipped = !this.flipped;
+    }
+    public boolean isFlipped() {
+        return flipped;
+    }
+
+    public void setFlipped(boolean flipped) {
+        this.flipped = flipped;
     }
 }

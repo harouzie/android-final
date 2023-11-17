@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import java.util.ArrayList;
@@ -21,19 +23,27 @@ public class FlashcardCollectionPreviewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flashcard_collection_preview);
+
         flashcardCollectionRCV = findViewById(R.id.flashcardCollectionRCV);
         FlashcardCollectionRCVAdapter mRCVAdapter = new FlashcardCollectionRCVAdapter(
                 this, R.layout.rcv_flc_collection, loadFlashcardCollection());
         flashcardCollectionRCV.setAdapter(mRCVAdapter);
         flashcardCollectionRCV.setLayoutManager(new LinearLayoutManager(this));
 
+        setTitle("Collections");
     }
 
     private ArrayList<FlashcardCollection> loadFlashcardCollection(){
         ArrayList<FlashcardCollection> flashcardCollections = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            flashcardCollections.add(new FlashcardCollection(loadFlashcard()));
-        }
+        FlashcardCollection fcBird = new FlashcardCollection(loadFlashcard());
+        FlashcardCollection fcCat = new FlashcardCollection(loadFlashcard());
+        FlashcardCollection fcDog = new FlashcardCollection(loadFlashcard());
+
+//        fcBird.setCoverImage(Drawable.createFromPath("drawable/huhcat.png"));
+        flashcardCollections.add(fcBird);
+        flashcardCollections.add(fcCat);
+        flashcardCollections.add(fcDog);
+
         return flashcardCollections;
     }
     private ArrayList<Flashcard> loadFlashcard(){

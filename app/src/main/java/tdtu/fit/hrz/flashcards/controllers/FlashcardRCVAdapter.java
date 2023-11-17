@@ -78,7 +78,7 @@ public class FlashcardRCVAdapter extends
         // Method to flip the card with animation
         private void flipCard() {
             ObjectAnimator flip = ObjectAnimator.ofFloat(
-                    itemView, "rotationY", 0f, 180f);
+                    itemView, "rotationY", 0f, 360f);
             flip.setDuration(500);
             flip.start();
 

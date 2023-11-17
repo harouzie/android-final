@@ -1,9 +1,11 @@
 package tdtu.fit.hrz.flashcards.activities;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         logoutButton = findViewById(R.id.logoutButton);
         welcomeUser = findViewById(R.id.welcomeUser);
 
-
         if (getIntent().hasExtra("DISPLAY_NAME")) {
             String displayName = getIntent().getStringExtra("DISPLAY_NAME");
             logoutButton.setVisibility(View.VISIBLE);
@@ -34,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
             signUpButton.setVisibility(View.INVISIBLE);
             haveAccountTitle.setVisibility(View.INVISIBLE);
             welcomeUser.setText("Welcome " + displayName);
+        }
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.hide();
         }
     }
 

@@ -23,6 +23,7 @@ public class FlashcardCreatorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flashcard_creator);
 
+        setTitle("Flashcard Studio");
         // TODO add image for flashcard
 //        questionImageView = findViewById(R.id.questionImage);
 //        btnAddQuesImg = findViewById(R.id.btnAddQuesImg);

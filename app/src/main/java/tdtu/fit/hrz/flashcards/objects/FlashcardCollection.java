@@ -1,5 +1,8 @@
 package tdtu.fit.hrz.flashcards.objects;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
@@ -10,6 +13,7 @@ public class FlashcardCollection {
     private String creator;
     private Date lastModifiedDate;
     private int size;
+    private Drawable coverImage;
     private ArrayList<Flashcard> flashcards;
 
 
@@ -45,5 +49,13 @@ public class FlashcardCollection {
     public int getSize() {
         size = flashcards.size();
         return size;
+    }
+
+    public Drawable getCoverImage() {
+        return coverImage;
+    }
+
+    public void setCoverImage(Drawable coverImage) {
+        this.coverImage = coverImage;
     }
 }

@@ -3,10 +3,14 @@ package tdtu.fit.hrz.flashcards.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -21,6 +25,7 @@ import tdtu.fit.hrz.flashcards.objects.UserAccount;
 
 public class LogInActivity extends AppCompatActivity {
     String username, password;
+    TextView errorTextView;
     EditText usernameEditText;
     TextInputEditText passwordEditText;
     UserAccount demo_account;
@@ -33,6 +38,7 @@ public class LogInActivity extends AppCompatActivity {
         demo_account = new UserAccount("demoUsername", "demoPassword", "Demo User");
         usernameEditText = findViewById(R.id.usernameEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
+        errorTextView = findViewById(R.id.errorTextView);
         databaseReference = FirebaseDatabase.getInstance().getReference().child("UserAccountInfo");
     }
 
@@ -55,11 +61,13 @@ public class LogInActivity extends AppCompatActivity {
                             Toast.makeText(LogInActivity.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
                             loginSuccess(userAccount.getDisplayName());
                         } else {
-                            Toast.makeText(LogInActivity.this, "Incorrect password!", Toast.LENGTH_SHORT).show();
+                            errorTextView.setText("Incorrect password!");
+                            errorTextView.setVisibility(View.VISIBLE);
                         }
                     }
                 } else {
-                    Toast.makeText(LogInActivity.this, "Username not found!", Toast.LENGTH_SHORT).show();
+                    errorTextView.setText("Username not found!");
+                    errorTextView.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -72,10 +80,15 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     private void loginSuccess(String displayName) {
+        SharedPreferences preferences = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("isLoggedIn", true);
+        editor.putString("displayName", displayName);
+        editor.apply();
         Intent intent = new Intent(LogInActivity.this, MainActivity.class);
-        intent.putExtra("DISPLAY_NAME", displayName);
+        //intent.putExtra("DISPLAY_NAME", displayName);
         startActivity(intent);
-        finish();  // Đóng LogInActivity nếu cần
+        finish();
     }
 
     @Override

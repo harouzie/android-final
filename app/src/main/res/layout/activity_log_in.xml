@@ -130,6 +130,18 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+    <TextView
+        android:id="@+id/errorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/inputCardView"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:text="test"
+        android:textSize="16sp"
+        android:textColor="#FF0000"
+        android:visibility="invisible"/>
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signUpConfirmButton"
         android:layout_width="wrap_content"

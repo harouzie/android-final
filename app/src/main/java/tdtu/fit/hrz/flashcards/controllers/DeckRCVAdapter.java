@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import tdtu.fit.hrz.flashcards.activities.CardReviewActivity;
 import tdtu.fit.hrz.flashcards.activities.DeckEditActivity;
 import tdtu.fit.hrz.flashcards.objects.Deck;
 
@@ -29,7 +30,7 @@ public class DeckRCVAdapter extends
         setCollectionClickListener(new onCollectionClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Intent intent = new Intent(context, DeckEditActivity.class);
+                Intent intent = new Intent(context, CardReviewActivity.class);
                 context.startActivity(intent);
             }
         });

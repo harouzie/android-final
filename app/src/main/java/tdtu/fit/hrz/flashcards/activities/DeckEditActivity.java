@@ -36,7 +36,7 @@ public class DeckEditActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.flashcard_option_menu, menu);
+        getMenuInflater().inflate(R.menu.card_edit_menu, menu);
         return true;
     }
 

@@ -4,7 +4,7 @@
     <item
         android:id="@+id/addFC"
         app:showAsAction="ifRoom"
-        android:icon="@android:drawable/ic_menu_add"
+        android:icon="@drawable/ic_delete"
         android:title="Create new collection"/>
 
 </menu>

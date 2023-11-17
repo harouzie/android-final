@@ -10,16 +10,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import tdtu.fit.hrz.flashcards.objects.Flashcard;
-public class FlashcardRCVAdapter extends
-        RecyclerView.Adapter <FlashcardRCVAdapter.FlashcardViewHolder>{
+import tdtu.fit.hrz.flashcards.objects.Card;
+public class CardRCVAdapter extends
+        RecyclerView.Adapter <CardRCVAdapter.FlashcardViewHolder>{
     private Context context;
     private int resourceId;
-    private ArrayList<Flashcard> flashcards;
+    private ArrayList<Card> flashcards;
     private LayoutInflater mInflater;
     private onFlashcardClickListener flashcardClickListener;
 
-    public FlashcardRCVAdapter(Context context, int resourceId, ArrayList<Flashcard> flashcards) {
+    public CardRCVAdapter(Context context, int resourceId, ArrayList<Card> flashcards) {
         this.context = context;
         this.resourceId = resourceId;
         this.flashcards = flashcards;
@@ -34,7 +34,7 @@ public class FlashcardRCVAdapter extends
 
     @NonNull
     @Override
-    public FlashcardRCVAdapter.FlashcardViewHolder
+    public CardRCVAdapter.FlashcardViewHolder
         onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = mInflater.inflate(this.resourceId, parent, false);
         return new FlashcardViewHolder(view);
@@ -42,8 +42,8 @@ public class FlashcardRCVAdapter extends
 
     @Override
     public void
-        onBindViewHolder(@NonNull FlashcardRCVAdapter.FlashcardViewHolder holder, int position) {
-        Flashcard flashcard = flashcards.get(position);
+        onBindViewHolder(@NonNull CardRCVAdapter.FlashcardViewHolder holder, int position) {
+        Card flashcard = flashcards.get(position);
         holder.update(flashcard);
     }
 
@@ -61,7 +61,7 @@ public class FlashcardRCVAdapter extends
     }
     public class FlashcardViewHolder extends RecyclerView.ViewHolder {
 
-        private Flashcard flashcard;
+        private Card flashcard;
 
         public FlashcardViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -70,7 +70,7 @@ public class FlashcardRCVAdapter extends
             });
         }
 
-        public void update(Flashcard flashcard){
+        public void update(Card flashcard){
             this.flashcard = flashcard;
             // TODO: bind data on QA sides
         }
@@ -90,11 +90,11 @@ public class FlashcardRCVAdapter extends
             notifyItemChanged(getAdapterPosition());
         }
 
-        public Flashcard getFlashcard() {
+        public Card getFlashcard() {
             return flashcard;
         }
 
-        public void setFlashcard(Flashcard flashcard) {
+        public void setFlashcard(Card flashcard) {
             this.flashcard = flashcard;
         }
     }

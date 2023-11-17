@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import tdtu.fit.hrz.flashcards.R;
 import tdtu.fit.hrz.flashcards.controllers.DeckRCVAdapter;
-import tdtu.fit.hrz.flashcards.objects.Flashcard;
+import tdtu.fit.hrz.flashcards.objects.Card;
 import tdtu.fit.hrz.flashcards.objects.Deck;
 
 public class DeckPreviewActivity extends AppCompatActivity {
@@ -43,10 +43,10 @@ public class DeckPreviewActivity extends AppCompatActivity {
 
         return flashcardCollections;
     }
-    private ArrayList<Flashcard> loadFlashcard(){
-        ArrayList<Flashcard> f = new ArrayList<>();
+    private ArrayList<Card> loadFlashcard(){
+        ArrayList<Card> f = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
-            f.add(new Flashcard());
+            f.add(new Card());
         }
         return f;
     }

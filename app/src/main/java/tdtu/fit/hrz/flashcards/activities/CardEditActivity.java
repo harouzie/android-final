@@ -9,12 +9,10 @@ import android.provider.MediaStore;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import tdtu.fit.hrz.flashcards.R;
 
-public class FlashcardCreatorActivity extends AppCompatActivity {
+public class CardEditActivity extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
     private ImageButton btnAddQuesImg,btnAddAnsImg;
     private ImageView questionImageView;

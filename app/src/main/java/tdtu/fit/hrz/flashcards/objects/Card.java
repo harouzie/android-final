@@ -5,13 +5,13 @@ package tdtu.fit.hrz.flashcards.objects;
  * head is for question
  * tail is for answer
  */
-public class Flashcard {
+public class Card {
 
     private String question;
     private String answer;
     private boolean flipped = false;
 
-    public Flashcard(){
+    public Card(){
         question = "";
         answer = "";
     }

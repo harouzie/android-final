@@ -13,10 +13,10 @@ public class Deck {
     private Date lastModifiedDate;
     private int size;
     private Drawable coverImage;
-    private ArrayList<Flashcard> flashcards;
+    private ArrayList<Card> flashcards;
 
 
-    public Deck(@NonNull ArrayList<Flashcard> flashcards) {
+    public Deck(@NonNull ArrayList<Card> flashcards) {
         this.flashcards = flashcards;
         this.size = flashcards.size();
     }

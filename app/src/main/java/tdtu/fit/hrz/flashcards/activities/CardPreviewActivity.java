@@ -13,10 +13,10 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 
 import tdtu.fit.hrz.flashcards.R;
-import tdtu.fit.hrz.flashcards.controllers.FlashcardRCVAdapter;
-import tdtu.fit.hrz.flashcards.objects.Flashcard;
+import tdtu.fit.hrz.flashcards.controllers.CardRCVAdapter;
+import tdtu.fit.hrz.flashcards.objects.Card;
 
-public class FlashcardPreviewActivity extends AppCompatActivity {
+public class CardPreviewActivity extends AppCompatActivity {
 
     RecyclerView flashcardRCV;
 
@@ -28,8 +28,8 @@ public class FlashcardPreviewActivity extends AppCompatActivity {
         setTitle("Flashcard Preview");
 
         flashcardRCV = findViewById(R.id.flashcardRCV);
-        FlashcardRCVAdapter mRCVAdapter = new FlashcardRCVAdapter(
-                this, R.layout.rcv_flashcard, loadFlashcard());
+        CardRCVAdapter mRCVAdapter = new CardRCVAdapter(
+                this, R.layout.rcv_card, loadFlashcard());
         flashcardRCV.setAdapter(mRCVAdapter);
         flashcardRCV.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -44,16 +44,16 @@ public class FlashcardPreviewActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if(id == R.id.flashcard_action_add){
-            Intent intent = new Intent(this, FlashcardCreatorActivity.class);
+            Intent intent = new Intent(this, CardEditActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private ArrayList<Flashcard> loadFlashcard(){
-        ArrayList<Flashcard> f = new ArrayList<>();
+    private ArrayList<Card> loadFlashcard(){
+        ArrayList<Card> f = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
-            f.add(new Flashcard());
+            f.add(new Card());
         }
         return f;
     }

@@ -22,7 +22,7 @@
             android:name=".activities.DeckPreviewActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.FlashcardPreviewActivity"
+            android:name=".activities.CardPreviewActivity"
             android:exported="false" />
         <activity
             android:name=".activities.LogInActivity"
@@ -31,7 +31,7 @@
             android:name=".activities.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.FlashcardCreatorActivity"
+            android:name=".activities.CardEditActivity"
             android:exported="true" />
         <activity
             android:name=".activities.MainActivity"

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -42,11 +43,10 @@ public class DeckEditActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        if(id == R.id.flashcard_action_add){
-            Intent intent = new Intent(this, CardEditActivity.class);
-            startActivity(intent);
-        }
+//        int id = item.getItemId();
+//        if(id == R.id.action_delete_card){
+//            Toast.makeText(this, "delete card", Toast.LENGTH_SHORT).show();
+//        }
         return super.onOptionsItemSelected(item);
     }
 

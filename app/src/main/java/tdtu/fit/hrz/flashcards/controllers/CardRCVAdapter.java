@@ -2,6 +2,7 @@ package tdtu.fit.hrz.flashcards.controllers;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,39 +11,44 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+
+import tdtu.fit.hrz.flashcards.activities.CardEditActivity;
 import tdtu.fit.hrz.flashcards.objects.Card;
 public class CardRCVAdapter extends
-        RecyclerView.Adapter <CardRCVAdapter.FlashcardViewHolder>{
+        RecyclerView.Adapter <CardRCVAdapter.CardViewHolder>{
     private Context context;
     private int resourceId;
     private ArrayList<Card> flashcards;
     private LayoutInflater mInflater;
-    private onFlashcardClickListener flashcardClickListener;
+    private onCardClickListener onCardClickListener;
+    private onCardLongClickListener onCardLongClickListener;
 
     public CardRCVAdapter(Context context, int resourceId, ArrayList<Card> flashcards) {
         this.context = context;
         this.resourceId = resourceId;
         this.flashcards = flashcards;
         this.mInflater = LayoutInflater.from(context);
-        this.flashcardClickListener = new onFlashcardClickListener() {
+        this.onCardClickListener = (view, position) -> view.flipCard();
+        this.onCardLongClickListener = new onCardLongClickListener() {
             @Override
-            public void onClick(FlashcardViewHolder view, int position) {
-                view.flipCard();
+            public void onClick(CardViewHolder view, int position) {
+                Intent intent = new Intent(context, CardEditActivity.class);
+                context.startActivity(intent);
             }
         };
     }
 
     @NonNull
     @Override
-    public CardRCVAdapter.FlashcardViewHolder
+    public CardViewHolder
         onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = mInflater.inflate(this.resourceId, parent, false);
-        return new FlashcardViewHolder(view);
+        return new CardViewHolder(view);
     }
 
     @Override
     public void
-        onBindViewHolder(@NonNull CardRCVAdapter.FlashcardViewHolder holder, int position) {
+        onBindViewHolder(@NonNull CardViewHolder holder, int position) {
         Card flashcard = flashcards.get(position);
         holder.update(flashcard);
     }
@@ -52,21 +58,29 @@ public class CardRCVAdapter extends
         return flashcards.size();
     }
 
-    public onFlashcardClickListener getFlashcardClickListener() {
-        return flashcardClickListener;
+    public onCardClickListener getOnCardClickListener() {
+        return onCardClickListener;
     }
 
-    private interface onFlashcardClickListener{
-        void onClick(FlashcardViewHolder view, int position);
+    private interface onCardClickListener {
+        void onClick(CardViewHolder view, int position);
     }
-    public class FlashcardViewHolder extends RecyclerView.ViewHolder {
+
+    private interface onCardLongClickListener {
+        void onClick(CardViewHolder view, int position);
+    }
+    public class CardViewHolder extends RecyclerView.ViewHolder {
 
         private Card flashcard;
 
-        public FlashcardViewHolder(@NonNull View itemView) {
+        public CardViewHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setOnClickListener(view -> {
-                flashcardClickListener.onClick(this, getAdapterPosition());
+                onCardClickListener.onClick(this, getAdapterPosition());
+            });
+            itemView.setOnLongClickListener(view -> {
+                onCardLongClickListener.onClick(this, getAdapterPosition());
+                return true;
             });
         }
 

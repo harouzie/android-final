@@ -19,9 +19,9 @@ public class DeckLibraryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_deck_preview);
+        setContentView(R.layout.activity_deck_library);
 
-        flashcardCollectionRCV = findViewById(R.id.flashcardCollectionRCV);
+        flashcardCollectionRCV = findViewById(R.id.deckRCV);
         DeckRCVAdapter mRCVAdapter = new DeckRCVAdapter(
                 this, R.layout.rcv_deck, loadFlashcardCollection());
         flashcardCollectionRCV.setAdapter(mRCVAdapter);

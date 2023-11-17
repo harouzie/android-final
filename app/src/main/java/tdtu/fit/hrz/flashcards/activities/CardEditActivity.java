@@ -19,7 +19,7 @@ public class CardEditActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_flashcard_creator);
+        setContentView(R.layout.activity_card_edit);
 
         setTitle("Flashcard Studio");
         // TODO add image for flashcard

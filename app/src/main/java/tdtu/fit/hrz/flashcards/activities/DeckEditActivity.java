@@ -16,14 +16,14 @@ import tdtu.fit.hrz.flashcards.R;
 import tdtu.fit.hrz.flashcards.controllers.CardRCVAdapter;
 import tdtu.fit.hrz.flashcards.objects.Card;
 
-public class CardPreviewActivity extends AppCompatActivity {
+public class DeckEditActivity extends AppCompatActivity {
 
     RecyclerView flashcardRCV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_flashcard_preview);
+        setContentView(R.layout.activity_deck_edit);
 
         setTitle("Flashcard Preview");
 

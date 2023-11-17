@@ -13,7 +13,7 @@ import tdtu.fit.hrz.flashcards.controllers.DeckRCVAdapter;
 import tdtu.fit.hrz.flashcards.objects.Card;
 import tdtu.fit.hrz.flashcards.objects.Deck;
 
-public class DeckPreviewActivity extends AppCompatActivity {
+public class DeckLibraryActivity extends AppCompatActivity {
     RecyclerView flashcardCollectionRCV;
 
     @Override

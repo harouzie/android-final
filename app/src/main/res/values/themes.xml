@@ -1,4 +1,4 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.Flashcards" parent="Base.Theme.Flashcards" />
+    <style name="Theme.Flashcards" parent="Theme.Material3.DayNight.NoActionBar" />
 
 </resources>

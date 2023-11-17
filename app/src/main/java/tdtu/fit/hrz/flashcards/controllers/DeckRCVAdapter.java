@@ -12,17 +12,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import tdtu.fit.hrz.flashcards.activities.FlashcardPreviewActivity;
-import tdtu.fit.hrz.flashcards.objects.Flashcard;
-import tdtu.fit.hrz.flashcards.objects.FlashcardCollection;
+import tdtu.fit.hrz.flashcards.objects.Deck;
 
-public class FlashcardCollectionRCVAdapter extends
-        RecyclerView.Adapter <FlashcardCollectionRCVAdapter.FlashcardCollectionViewHolder>{
+public class DeckRCVAdapter extends
+        RecyclerView.Adapter <DeckRCVAdapter.FlashcardCollectionViewHolder>{
     private Context context;
     private int resourceId;
-    private ArrayList<FlashcardCollection> flashcardCollections;
+    private ArrayList<Deck> flashcardCollections;
     private final LayoutInflater mInflater;
     private onCollectionClickListener collectionClickListener;
-    public FlashcardCollectionRCVAdapter(Context context, int resourceId, ArrayList<FlashcardCollection> flashcards) {
+    public DeckRCVAdapter(Context context, int resourceId, ArrayList<Deck> flashcards) {
         this.context = context;
         this.resourceId = resourceId;
         this.flashcardCollections = flashcards;
@@ -38,7 +37,7 @@ public class FlashcardCollectionRCVAdapter extends
 
     @NonNull
     @Override
-    public FlashcardCollectionRCVAdapter.FlashcardCollectionViewHolder
+    public DeckRCVAdapter.FlashcardCollectionViewHolder
     onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = mInflater.inflate(this.resourceId, parent, false);
         return new FlashcardCollectionViewHolder(view);
@@ -46,8 +45,8 @@ public class FlashcardCollectionRCVAdapter extends
 
     @Override
     public void
-    onBindViewHolder(@NonNull FlashcardCollectionRCVAdapter.FlashcardCollectionViewHolder holder, int position) {
-        FlashcardCollection fc = flashcardCollections.get(position);
+    onBindViewHolder(@NonNull DeckRCVAdapter.FlashcardCollectionViewHolder holder, int position) {
+        Deck fc = flashcardCollections.get(position);
         holder.update(fc);
     }
 
@@ -79,7 +78,7 @@ public class FlashcardCollectionRCVAdapter extends
             });
         }
 
-        public void update(FlashcardCollection fc){
+        public void update(Deck fc){
 
         }
     }

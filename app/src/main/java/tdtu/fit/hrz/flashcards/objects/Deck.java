@@ -1,6 +1,5 @@
 package tdtu.fit.hrz.flashcards.objects;
 
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 
 import androidx.annotation.NonNull;
@@ -8,7 +7,7 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class FlashcardCollection {
+public class Deck {
     private Date createDate;
     private String creator;
     private Date lastModifiedDate;
@@ -17,7 +16,7 @@ public class FlashcardCollection {
     private ArrayList<Flashcard> flashcards;
 
 
-    public FlashcardCollection(@NonNull ArrayList<Flashcard> flashcards) {
+    public Deck(@NonNull ArrayList<Flashcard> flashcards) {
         this.flashcards = flashcards;
         this.size = flashcards.size();
     }

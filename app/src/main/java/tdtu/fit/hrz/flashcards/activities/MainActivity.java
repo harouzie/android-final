@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -60,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void flashcardLayoutClick(View view) {
         Toast.makeText(this, "FlashCard Activity was chosen!", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, FlashcardCollectionPreviewActivity.class);
+        Intent intent = new Intent(this, DeckPreviewActivity.class);
         startActivity(intent);
     }
 }

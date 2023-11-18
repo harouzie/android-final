@@ -17,4 +17,8 @@
     <string name="log_out">Log Out</string>
     <string name="motto">Learn anything you want here!</string>
     <string name="add_new_flashcard">Add new flashcard</string>
+
+    <string name="nav_download">Download</string>
+    <string name="nav_library">Library</string>
+    <string name="nav_user">User</string>
 </resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_download"
+        android:enabled="true"
+        android:icon="@drawable/outline_archive_24"
+        android:title="@string/nav_download"/>
+    <item
+        android:id="@+id/nav_library"
+        android:enabled="true"
+        android:icon="@drawable/outline_cloud_done_24"
+        android:title="@string/nav_library"/>
+    <item
+        android:id="@+id/nav_user"
+        android:enabled="true"
+        android:icon="@drawable/outline_account_circle_24"
+        android:title="@string/nav_user"/>
+</menu>

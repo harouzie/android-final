@@ -146,7 +146,7 @@
         android:id="@+id/signUpConfirmButton"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:background="@drawable/default_button"
+        android:background="@drawable/default_button_state_list"
         android:layout_below="@id/inputCardView"
         android:layout_marginTop="120dp"
         android:text="@string/confirm"

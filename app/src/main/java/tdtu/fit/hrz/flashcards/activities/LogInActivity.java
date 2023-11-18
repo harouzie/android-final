@@ -25,11 +25,12 @@ import tdtu.fit.hrz.flashcards.objects.UserAccount;
 
 public class LogInActivity extends AppCompatActivity {
     String username, password;
-    TextView errorTextView;
+    TextView errorTextView, loginTitle;
     EditText usernameEditText;
     TextInputEditText passwordEditText;
     UserAccount demo_account;
     DatabaseReference databaseReference;
+    UserAccount user1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +40,21 @@ public class LogInActivity extends AppCompatActivity {
         usernameEditText = findViewById(R.id.usernameEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         errorTextView = findViewById(R.id.errorTextView);
+        loginTitle = findViewById(R.id.loginTitle);
         databaseReference = FirebaseDatabase.getInstance().getReference().child("UserAccountInfo");
+        user1 = new UserAccount("-NjYbSEO73tuo4SaL-_O");
     }
 
     public void loginConfirmButtonClick(View view) {
         username = usernameEditText.getText().toString();
         password = passwordEditText.getText().toString();
+        loginTitle.setText(user1.getFlashcardCollection().get("Bro"));
+
+        if (username.length() == 0 || password.length() == 0) {
+            errorTextView.setText("Username and password cannot be empty!");
+            errorTextView.setVisibility(View.VISIBLE);
+            return;
+        }
 
         checkLoginInfo(username, password);
     }
@@ -59,7 +69,7 @@ public class LogInActivity extends AppCompatActivity {
 
                         if (userAccount != null && userAccount.getPassword().equals(password)) {
                             Toast.makeText(LogInActivity.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
-                            loginSuccess(userAccount.getDisplayName());
+                            loginSuccess(userAccount.getDisplayName(), userAccount.getKeyID());
                         } else {
                             errorTextView.setText("Incorrect password!");
                             errorTextView.setVisibility(View.VISIBLE);
@@ -79,23 +89,22 @@ public class LogInActivity extends AppCompatActivity {
 
     }
 
-    private void loginSuccess(String displayName) {
+    private void loginSuccess(String displayName, String userKey) {
         SharedPreferences preferences = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean("isLoggedIn", true);
         editor.putString("displayName", displayName);
+        editor.putString("userKey", userKey);
         editor.apply();
         Intent intent = new Intent(LogInActivity.this, MainActivity.class);
-        //intent.putExtra("DISPLAY_NAME", displayName);
         startActivity(intent);
         finish();
     }
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         Intent intent = new Intent(LogInActivity.this, MainActivity.class);
         startActivity(intent);
-        finish();
     }
-
 }

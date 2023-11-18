@@ -19,6 +19,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.Nullable;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import tdtu.fit.hrz.flashcards.R;
 import tdtu.fit.hrz.flashcards.objects.UserAccount;
 
@@ -79,6 +82,7 @@ public class SignUpActivity extends AppCompatActivity {
                     errorTextView.setText("This username already exist!");
                 } else {
                     String key = databaseReference.push().getKey();
+                    acc.setKeyID(key);
                     databaseReference.child(key).setValue(acc, new DatabaseReference.CompletionListener() {
                         @Override
                         public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
@@ -102,4 +106,5 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
     }
+
 }

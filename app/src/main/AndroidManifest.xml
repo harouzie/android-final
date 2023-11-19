@@ -19,13 +19,7 @@
         android:theme="@style/Theme.Flashcards"
         tools:targetApi="31">
         <activity
-            android:name=".activities.DeckDownloadActivity"
-            android:exported="false" />
-        <activity
             android:name=".activities.CardReviewActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.DeckLibraryActivity"
             android:exported="false" />
         <activity
             android:name=".activities.DeckEditActivity"

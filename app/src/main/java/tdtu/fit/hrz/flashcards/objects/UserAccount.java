@@ -15,7 +15,7 @@ import java.util.Map;
 public class UserAccount {
     private String username, password, displayName;
     private String keyID;
-    private HashMap<String, String> flashcardCollection = new HashMap<>();
+    private HashMap<String, String> deck = new HashMap<>();
     public UserAccount() {};
     public UserAccount(String userID) {
         DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("UserAccountInfo").child(userID);
@@ -36,7 +36,7 @@ public class UserAccount {
                             for (DataSnapshot cardSnapshot : flashcardSnapshot.getChildren()) {
                                 String question = cardSnapshot.getKey();
                                 String answer = cardSnapshot.getValue(String.class);
-                                flashcardCollection.put(question, answer);
+                                deck.put(question, answer);
                             }
                         }
                     } else {
@@ -59,31 +59,31 @@ public class UserAccount {
     public String getPassword() { return this.password; }
     public String getDisplayName() { return this.displayName; }
     public String getKeyID() { return keyID; }
-    public HashMap<String, String> getFlashcardCollection() { return this.flashcardCollection; }
+    public HashMap<String, String> getDeck() { return this.deck; }
     public void setUsername(String username) { this.username = username; }
     public void setPassword(String password) { this.password = password; }
     public void setDisplayName(String displayName) { this.displayName = displayName; }
     public void setKeyID(String keyID) { this.keyID = keyID; }
 
     public void newCard(String question, String answer) {
-        this.flashcardCollection.put(question, answer);
+        this.deck.put(question, answer);
         updateCollectionToFirebase();
     }
 
     public void deleteCard(String question) {
-        this.flashcardCollection.remove(question);
+        this.deck.remove(question);
         updateCollectionToFirebase();
     }
 
     public void changeCardAnswer(String question, String newAnswer) {
-        this.flashcardCollection.put(question, newAnswer);
+        this.deck.put(question, newAnswer);
         updateCollectionToFirebase();
     }
 
     public void updateCollectionToFirebase() {
         DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("UserAccountInfo").child(this.keyID).child("flashcardCollection");
 
-        for (Map.Entry<String, String> entry : this.flashcardCollection.entrySet()) {
+        for (Map.Entry<String, String> entry : this.deck.entrySet()) {
             String question = entry.getKey();
             String answer = entry.getValue();
             userReference.child(question).setValue(answer);

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -52,9 +53,13 @@ public class DeckEditActivity extends AppCompatActivity {
 
     private ArrayList<Card> loadFlashcard(){
         ArrayList<Card> f = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 20; i++) {
             f.add(new Card());
         }
         return f;
+    }
+    // TODO delete flashcard - deck change
+    public void deleteFlashCard(View view) {
+        Toast.makeText(this, "Delete card action", Toast.LENGTH_SHORT).show();
     }
 }

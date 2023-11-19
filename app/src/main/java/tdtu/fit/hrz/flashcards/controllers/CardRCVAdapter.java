@@ -28,13 +28,9 @@ public class CardRCVAdapter extends
         this.resourceId = resourceId;
         this.flashcards = flashcards;
         this.mInflater = LayoutInflater.from(context);
-        this.onCardClickListener = (view, position) -> view.flipCard();
-        this.onCardLongClickListener = new onCardLongClickListener() {
-            @Override
-            public void onClick(CardViewHolder view, int position) {
-                Intent intent = new Intent(context, CardEditActivity.class);
-                context.startActivity(intent);
-            }
+        this.onCardClickListener = (view, position) -> {
+            Intent intent = new Intent(context, CardEditActivity.class);
+            context.startActivity(intent);
         };
     }
 

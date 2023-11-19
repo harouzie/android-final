@@ -55,11 +55,11 @@ public class SignUpActivity extends AppCompatActivity {
         boolean basicCheck = false;
 
         if (username.length() < 6) {
-            errorTextView.setText("Username too short! It must be at least 6 characters!");
+            errorTextView.setText(R.string.username_too_short);
         } else if (password1.length() < 8) {
-            errorTextView.setText("Password too short! It must be at least 8 characters!");
+            errorTextView.setText(R.string.password_too_short);
         } else if (!password1.equals(password2)) {
-            errorTextView.setText("Password confirmation unmatched!");
+            errorTextView.setText(R.string.password_confirmation_unmatched);
         } else {
             UserAccount newAccount = new UserAccount(username, password1, displayName);
             addDataToFirebase(newAccount);
@@ -75,34 +75,41 @@ public class SignUpActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("UserAccountInfo");
         errorTextView.setTextColor(Color.parseColor("#FF0000"));
 
-        databaseReference.orderByChild("username").equalTo(acc.getUsername()).addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.orderByChild("username")
+                .equalTo(acc.getUsername()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    errorTextView.setText("This username already exist!");
+                    errorTextView.setText(R.string.this_username_already_exist);
                 } else {
                     String key = databaseReference.push().getKey();
                     acc.setKeyID(key);
+                    assert key != null;
                     databaseReference.child(key).setValue(acc, new DatabaseReference.CompletionListener() {
                         @Override
-                        public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+                        public void onComplete(@Nullable DatabaseError databaseError,
+                                               @NonNull DatabaseReference databaseReference) {
                             if (databaseError == null) {
-                                errorTextView.setText("Signed up successfully!\n" +
-                                        "You can return to home screen to login now");
+                                errorTextView.setText(String.format("%s %s",
+                                        getString(R.string.signed_up_successfully),
+                                        getString(R.string.you_can_return_to_home_screen)));
                                 errorTextView.setTextColor(Color.parseColor("#00FF00"));
                             } else {
-                                errorTextView.setText("Error adding to database: " + databaseError.getMessage());
+                                errorTextView.setText(String.format("%s %s",
+                                        getString(R.string.error_adding_to_database),
+                                        databaseError.getMessage()));
                             }
                         }
                     });
                 }
-
                 errorTextView.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(SignUpActivity.this, "Error checking username: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignUpActivity.this,
+                        getString(R.string.error_checking_username)
+                            + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

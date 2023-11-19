@@ -30,7 +30,6 @@ public class LogInActivity extends AppCompatActivity {
     TextInputEditText passwordEditText;
     UserAccount demo_account;
     DatabaseReference databaseReference;
-    UserAccount user1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +41,11 @@ public class LogInActivity extends AppCompatActivity {
         errorTextView = findViewById(R.id.errorTextView);
         loginTitle = findViewById(R.id.loginTitle);
         databaseReference = FirebaseDatabase.getInstance().getReference().child("UserAccountInfo");
-        user1 = new UserAccount("-NjYbSEO73tuo4SaL-_O");
     }
 
     public void loginConfirmButtonClick(View view) {
         username = usernameEditText.getText().toString();
         password = passwordEditText.getText().toString();
-        loginTitle.setText(user1.getFlashcardCollection().get("Bro"));
 
         if (username.length() == 0 || password.length() == 0) {
             errorTextView.setText("Username and password cannot be empty!");

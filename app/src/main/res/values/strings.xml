@@ -30,4 +30,6 @@
     <string name="username_too_short">Username too short! It must be at least 6 characters!</string>
     <string name="password_too_short">Password too short! It must be at least 8 characters!</string>
     <string name="password_confirmation_unmatched">Password confirmation unmatched!</string>
+    <string name="ipsum_quia_dolor_sit_amet">ipsum quia dolor sit amet?</string>
+    <string name="_00x"># 00x</string>
 </resources>

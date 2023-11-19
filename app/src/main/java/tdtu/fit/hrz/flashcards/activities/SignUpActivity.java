@@ -75,7 +75,8 @@ public class SignUpActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("UserAccountInfo");
         errorTextView.setTextColor(Color.parseColor("#FF0000"));
 
-        databaseReference.orderByChild("username").equalTo(acc.getUsername()).addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.orderByChild("username")
+                .equalTo(acc.getUsername()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -86,23 +87,29 @@ public class SignUpActivity extends AppCompatActivity {
                     assert key != null;
                     databaseReference.child(key).setValue(acc, new DatabaseReference.CompletionListener() {
                         @Override
-                        public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+                        public void onComplete(@Nullable DatabaseError databaseError,
+                                               @NonNull DatabaseReference databaseReference) {
                             if (databaseError == null) {
-                                errorTextView.setText(String.format("%s %s", getString(R.string.signed_up_successfully), getString(R.string.you_can_return_to_home_screen)));
+                                errorTextView.setText(String.format("%s %s",
+                                        getString(R.string.signed_up_successfully),
+                                        getString(R.string.you_can_return_to_home_screen)));
                                 errorTextView.setTextColor(Color.parseColor("#00FF00"));
                             } else {
-                                errorTextView.setText(String.format("%s %s", getString(R.string.error_adding_to_database), databaseError.getMessage()));
+                                errorTextView.setText(String.format("%s %s",
+                                        getString(R.string.error_adding_to_database),
+                                        databaseError.getMessage()));
                             }
                         }
                     });
                 }
-
                 errorTextView.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(SignUpActivity.this, getString(R.string.error_checking_username) + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignUpActivity.this,
+                        getString(R.string.error_checking_username)
+                            + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

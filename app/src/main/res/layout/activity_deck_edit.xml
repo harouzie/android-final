@@ -8,10 +8,36 @@
     tools:context=".activities.DeckEditActivity"
     android:padding="10dp">
 
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/deckEditTopBarLayout">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            app:layout_anchor="@+id/appBarLayout"
+            app:layout_anchorGravity="top|center"
+            app:menu="@menu/card_edit_menu"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:title="Deck Edit" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/flashcardRCV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/deckEditTopBarLayout"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 

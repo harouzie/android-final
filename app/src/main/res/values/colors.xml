@@ -32,7 +32,7 @@
     <color name="md_theme_light_outlineVariant">#CAC4D0</color>
     <color name="md_theme_light_scrim">#000000</color>
     <color name="md_theme_light_questionCard">#F7F2FA</color>
-
+    <color name="md_theme_light_deck_edit_grayish">#E6E0E9</color>
 <!--    Dark-->
     <color name="md_theme_dark_primary">#D0BCFF</color>
     <color name="md_theme_dark_onPrimary">#381E72</color>

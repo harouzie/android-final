@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Deck {
+    private String title;
+    private boolean isDownloaded;
+    private boolean isPrivate;
     private Date createDate;
     private String creator;
     private Date lastModifiedDate;
@@ -56,5 +59,29 @@ public class Deck {
 
     public void setCoverImage(Drawable coverImage) {
         this.coverImage = coverImage;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public boolean isDownloaded() {
+        return isDownloaded;
+    }
+
+    public void setDownloaded(boolean downloaded) {
+        isDownloaded = downloaded;
+    }
+
+    public boolean isPrivate() {
+        return isPrivate;
+    }
+
+    public void setPrivate(boolean aPrivate) {
+        isPrivate = aPrivate;
     }
 }

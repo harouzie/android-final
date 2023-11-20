@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 import tdtu.fit.hrz.flashcards.activities.CardEditActivity;
 import tdtu.fit.hrz.flashcards.objects.Card;
-public class CardRCVAdapter extends
+public class  CardRCVAdapter extends
         RecyclerView.Adapter <CardRCVAdapter.CardViewHolder>{
     private Context context;
     private int resourceId;

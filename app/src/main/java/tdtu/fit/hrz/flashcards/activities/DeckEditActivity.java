@@ -1,7 +1,10 @@
 package tdtu.fit.hrz.flashcards.activities;
 
+import static android.widget.Toast.LENGTH_SHORT;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +15,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 
 import tdtu.fit.hrz.flashcards.R;
@@ -20,7 +26,9 @@ import tdtu.fit.hrz.flashcards.objects.Card;
 
 public class DeckEditActivity extends AppCompatActivity {
 
-    RecyclerView flashcardRCV;
+    private RecyclerView flashcardRCV;
+    private MaterialToolbar topAppBar;
+    private FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +37,34 @@ public class DeckEditActivity extends AppCompatActivity {
 
         setTitle("Flashcard Preview");
 
-        flashcardRCV = findViewById(R.id.flashcardRCV);
+        //========TOP BAR================================
+        topAppBar = findViewById(R.id.topAppBar);
+        topAppBar.setOnMenuItemClickListener(item -> {
+            int id  = item.getItemId();
+            if(id == R.id.action_delete_deck){
+                Toast.makeText(DeckEditActivity.this, "delete deck", LENGTH_SHORT).show();
+                return true;
+            }
+            return false;
+        });
+
+        topAppBar.setNavigationOnClickListener(view -> {
+            super.onBackPressed();
+        });
+
+        //========RCV===================================
+        flashcardRCV = findViewById(R.id.cardRCV);
         CardRCVAdapter mRCVAdapter = new CardRCVAdapter(
                 this, R.layout.rcv_card, loadFlashcard());
         flashcardRCV.setAdapter(mRCVAdapter);
         flashcardRCV.setLayoutManager(new LinearLayoutManager(this));
+
+        //========FAB===================================
+        floatingActionButton = findViewById(R.id.deckEditFAB);
+        floatingActionButton.setOnClickListener(view -> {
+            Intent intent = new Intent(this, CardEditActivity.class);
+            startActivity(intent);
+        });
     }
 
     @Override

@@ -7,8 +7,9 @@
     tools:context=".activities.CardEditActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/topAppBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
@@ -29,143 +30,149 @@
             app:title="Card Edit" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/topAppBarLayout"
         android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/md_theme_light_questionCard"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp">
+
+        </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/flashcardQuestion"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="150dp"
-            android:layout_marginBottom="7dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:foreground="?attr/selectableItemBackground"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="5dp">
+            app:cardCornerRadius="12dp"
+            app:cardElevation="3dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="15dp">
+                android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/questionHeading"
+                <LinearLayout
+                    android:id="@+id/deckHeadLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/question"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal"
+                    android:layout_margin="16dp"
+                    android:paddingRight="10dp">
 
-                <EditText
-                    android:id="@+id/question"
-                    android:layout_below="@id/questionHeading"
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/deckCover"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/img_deck_cover"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="6"
+                        android:layout_marginStart="16dp"
+                        android:maxLength="100"
+                        android:maxWidth="200dp"
+                        android:maxHeight="35dp"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-light"
+                        android:text="@string/lorem_ipsum_long"/>
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_num_card"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/deckNumCard"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="999"
+                        android:textSize="14sp"
+                        android:gravity="left"
+                        android:layout_weight="1"/>
+
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:hint="lorem ipsum"/>
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/deckHeadLayout"
+                    android:layout_above="@id/cardDivider"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:hint="@string/your_question"
+                    app:endIconMode="clear_text">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="top"
+                        android:layout_gravity="center_vertical"/>
 
-    <!--            <ImageButton-->
-    <!--                android:id="@+id/btnAddQuesImg"-->
-    <!--                android:src="@android:drawable/ic_menu_gallery"-->
-    <!--                android:layout_below="@id/question"-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"/>-->
-    <!--            <ImageView-->
-    <!--                android:id="@+id/questionImage"-->
-    <!--                android:layout_below="@id/btnAddQuesImg"-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="100dp"-->
-    <!--                android:maxHeight="200dp"-->
-    <!--                android:background="@color/white"/>-->
+                </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/cardDivider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_above="@id/cardBottomLayout"
+                    app:dividerColor="@color/black"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/cardBottomLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/questionHeading"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="8"
+                        android:fontFamily="sans-serif-light"
+                        android:text="@string/question"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:layout_marginEnd="16dp"
+                        android:layout_gravity="center_vertical"
+                        android:text="Flip">
+
+                    </Button>
+                </LinearLayout>
             </RelativeLayout>
 
 
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/flashcardAnswer"
-            android:layout_below="@id/flashcardQuestion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="7dp"
-            android:foreground="?attr/selectableItemBackground"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="5dp">
+    </FrameLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="15dp">
-
-                <TextView
-                    android:id="@+id/answerHeading"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/answer"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:layout_below="@id/answerHeading"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:hint="lorem ipsum"/>
-
-
-            </RelativeLayout>
-
-
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/buttonsLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp"
-        android:padding="10dp">
-
-        <Button
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:text="DISCARD"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/button_rounded_square"/>
-
-        <Button
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:text="CREATE"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/button_rounded_square"
-            android:backgroundTint="@color/gray"/>
-
-    </LinearLayout>
 
 </RelativeLayout>

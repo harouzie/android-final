@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.DeckEditActivity"
-    android:padding="10dp">
+    tools:context=".activities.DeckEditActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -36,6 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_below="@id/deckEditTopBarLayout"
+        android:layout_margin="16dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="0dp">
         <RelativeLayout
@@ -63,7 +63,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/deck_name"
-                    android:text="Your Deck Name here">
+                    android:textColorHint="@color/gray"
+                    android:text="New Deck">
 
                 </com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
@@ -101,7 +102,7 @@
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/flashcardRCV"
+                android:id="@+id/cardRCV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/dividerLayout"

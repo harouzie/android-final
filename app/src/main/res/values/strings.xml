@@ -44,4 +44,7 @@
     <string name="_00x"># 00x</string>
     <string name="add_new_card">add new card</string>
     <string name="deck_name">Deck name</string>
+    <string name="delete_deck">Delete deck</string>
+    <string name="lorem_ipsum_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
+    <string name="your_question">Your question</string>
 </resources>

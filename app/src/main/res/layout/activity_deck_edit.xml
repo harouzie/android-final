@@ -43,30 +43,42 @@
             android:layout_height="match_parent"
             android:background="@color/md_theme_light_deck_edit_grayish">
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/deckCover"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="32dp"
+                android:src="@drawable/img_deck_cover"
+                android:scaleType="centerCrop"
+                android:layout_width="128dp"
+                android:layout_height="128dp"/>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp">
+                android:layout_margin="18dp"
+                android:layout_below="@id/deckCover"
+                app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/ipsum_quia_dolor_sit_amet">
+                    android:hint="@string/deck_name"
+                    android:text="Your Deck Name here">
 
                 </com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
-            
+
             <LinearLayout
                 android:id="@+id/dividerLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@id/flashcardRCV"
                 android:orientation="horizontal"
+                android:layout_marginTop="250dp"
                 android:paddingRight="10dp">
-                
+
                 <com.google.android.material.divider.MaterialDivider
                     android:layout_width="0dp"
-                    android:layout_height="1dp" 
+                    android:layout_height="1dp"
                     app:dividerColor="@color/black"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="8"/>
@@ -92,8 +104,9 @@
                 android:id="@+id/flashcardRCV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
+                android:layout_below="@id/dividerLayout"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true" />
 
@@ -107,7 +120,6 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="30dp"
                 android:src="@drawable/ic_add"
-                app:fabSize="mini"
                 android:contentDescription="@string/add_new_card" />
 
         </RelativeLayout>

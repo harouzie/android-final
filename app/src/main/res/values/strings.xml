@@ -33,4 +33,5 @@
     <string name="ipsum_quia_dolor_sit_amet">ipsum quia dolor sit amet?</string>
     <string name="_00x"># 00x</string>
     <string name="add_new_card">add new card</string>
+    <string name="deck_name">Deck name</string>
 </resources>

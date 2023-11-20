@@ -1,9 +1,12 @@
 package tdtu.fit.hrz.flashcards.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,8 +21,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 import tdtu.fit.hrz.flashcards.R;
+import tdtu.fit.hrz.flashcards.activities.CardReviewActivity;
+import tdtu.fit.hrz.flashcards.activities.DeckEditActivity;
 import tdtu.fit.hrz.flashcards.controllers.DeckAdapter;
 import tdtu.fit.hrz.flashcards.objects.Card;
 import tdtu.fit.hrz.flashcards.objects.Deck;
@@ -48,11 +54,18 @@ public class DeckLibraryFragment extends Fragment {
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if(id == R.id.action_review_deck){
-            Toast.makeText(requireActivity(), "Review deck", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getActivity(), CardReviewActivity.class);
+            startActivity(intent);
         } else if(id == R.id.action_edit_deck){
-            Toast.makeText(requireActivity(), "Edit deck", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getActivity(), DeckEditActivity.class);
+            startActivity(intent);
         } else if(id == R.id.action_delete_deck){
-            Toast.makeText(requireActivity(), "Delete deck", Toast.LENGTH_SHORT).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+            builder.setNegativeButton("No", null)
+                    .setPositiveButton("Yes", (dialogInterface, i) -> {
+//                        mRCVAdapter.removeDeck(DeckAdapter.selectedPos); TODO remove
+                    }).setTitle("Warning").setMessage("Are you sure to delete this deck?");
+            builder.show();
         }
         return super.onContextItemSelected(item);
     }
@@ -100,7 +113,7 @@ public class DeckLibraryFragment extends Fragment {
         ArrayList<Card> f = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
             f.add(new Card(
-                    "question%d" + (i+1),
+                    "question " + (i+1),
                     "answer" + (i+1))
             );
         }

@@ -20,9 +20,14 @@ public class Deck implements Serializable {
     private ArrayList<Card> cards;
 
 
-    public Deck(@NonNull ArrayList<Card> flashcards) {
-        this.cards = flashcards;
-        this.size = flashcards.size();
+    public Deck(@NonNull ArrayList<Card> cards) {
+        this.cards = cards;
+        this.size = cards.size();
+        int i = 1;
+        for(Card c: cards){
+            c.setIndex(i);
+            i++;
+        }
     }
 
     public Date getCreateDate() {

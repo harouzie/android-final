@@ -9,6 +9,7 @@ import java.io.Serializable;
  */
 public class Card implements Serializable {
 
+    private int index = 0;
     private String question;
     private String answer;
     private boolean flipped = false;
@@ -48,5 +49,13 @@ public class Card implements Serializable {
 
     public void setFlipped(boolean flipped) {
         this.flipped = flipped;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 }

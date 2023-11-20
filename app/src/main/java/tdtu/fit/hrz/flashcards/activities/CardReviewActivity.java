@@ -18,6 +18,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.List;
+import java.util.Locale;
 
 import tdtu.fit.hrz.flashcards.R;
 import tdtu.fit.hrz.flashcards.controllers.DeckAdapter;
@@ -26,9 +27,9 @@ import tdtu.fit.hrz.flashcards.objects.Deck;
 import tdtu.fit.hrz.flashcards.objects.UserAccount;
 
 public class CardReviewActivity extends AppCompatActivity {
-    MaterialToolbar topAppBar;
-    ShapeableImageView deckCover;
-    TextView deckName, deckNumcard, cardQuestion;
+    private MaterialToolbar topAppBar;
+    private ShapeableImageView deckCover;
+    private TextView deckName, deckNumcard, cardQuestion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +65,8 @@ public class CardReviewActivity extends AppCompatActivity {
         List<Card> cards = deck.getCards();
         deckCover.setImageDrawable(deck.getCoverImage());
         deckName.setText(deck.getDeckName());
-        deckNumcard.setText(String.valueOf(deck.getSize()));
+        deckNumcard.setText(String.format(Locale.ENGLISH, "%03d",deck.getSize()));
+
 
         if(deck.getSize() > 0) {
             cardQuestion.setText(cards.get(0).getQuestion());

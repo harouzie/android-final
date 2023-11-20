@@ -6,12 +6,15 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
+import tdtu.fit.hrz.flashcards.R;
 import tdtu.fit.hrz.flashcards.activities.CardEditActivity;
 import tdtu.fit.hrz.flashcards.objects.Card;
 public class  CardRCVAdapter extends
@@ -67,22 +70,22 @@ public class  CardRCVAdapter extends
     }
     public class CardViewHolder extends RecyclerView.ViewHolder {
 
-        private Card flashcard;
+        private Card card;
+        private TextView cardQuestion, cardIdx;
 
         public CardViewHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setOnClickListener(view -> {
                 onCardClickListener.onClick(this, getAdapterPosition());
             });
-//            itemView.setOnLongClickListener(view -> {
-//                onCardLongClickListener.onClick(this, getAdapterPosition());
-//                return true;
-//            });
+            cardQuestion = itemView.findViewById(R.id.cardQuestion);
+            cardIdx = itemView.findViewById(R.id.cardIndex);
         }
 
-        public void update(Card flashcard){
-            this.flashcard = flashcard;
-            // TODO: bind data on QA sides
+        public void update(Card card){
+            this.card = card;
+            cardQuestion.setText(card.getQuestion());
+            cardIdx.setText(String.format(Locale.ENGLISH,"%03d",card.getIndex()));
         }
 
         // Method to flip the card with animation
@@ -93,19 +96,19 @@ public class  CardRCVAdapter extends
             flip.start();
 
             // Toggle the flipped state
-            assert  flashcard != null /* get the corresponding Flashcard object */;
-            flashcard.flip();
+            assert  card != null /* get the corresponding Flashcard object */;
+            card.flip();
 
             // Notify the adapter that the data has changed
             notifyItemChanged(getAdapterPosition());
         }
 
-        public Card getFlashcard() {
-            return flashcard;
+        public Card getCard() {
+            return card;
         }
 
-        public void setFlashcard(Card flashcard) {
-            this.flashcard = flashcard;
+        public void setCard(Card card) {
+            this.card = card;
         }
     }
 }

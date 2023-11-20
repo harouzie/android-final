@@ -14,12 +14,20 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.List;
+import java.util.Locale;
+
 import tdtu.fit.hrz.flashcards.R;
+import tdtu.fit.hrz.flashcards.controllers.DeckAdapter;
+import tdtu.fit.hrz.flashcards.objects.Card;
+import tdtu.fit.hrz.flashcards.objects.Deck;
 import tdtu.fit.hrz.flashcards.viewmodels.DeckViewModel;
 
 public class CardEditActivity extends AppCompatActivity {
@@ -27,8 +35,10 @@ public class CardEditActivity extends AppCompatActivity {
     private ImageButton btnAddQuesImg,btnAddAnsImg;
     private ImageView questionImageView;
     private MaterialToolbar topAppBar;
-    private TextInputEditText text;
+    private TextInputEditText cardQuestion;
     private DeckViewModel model;
+    private ShapeableImageView deckCover;
+    private TextView deckNumcard, deckName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +46,11 @@ public class CardEditActivity extends AppCompatActivity {
 
         model = new ViewModelProvider(this).get(DeckViewModel.class);
 
-        text = findViewById(R.id.question);
         topAppBar = findViewById(R.id.topAppBar);
+        deckCover = findViewById(R.id.deckCover);
+        deckName  = findViewById(R.id.deckName);
+        deckNumcard  = findViewById(R.id.deckNumCard);
+        cardQuestion = findViewById(R.id.cardQuestion);
         topAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -53,25 +66,27 @@ public class CardEditActivity extends AppCompatActivity {
             super.onBackPressed();
         });
 
+        Deck deck = DeckAdapter.deckList.get(DeckAdapter.selectedPos);
+        List<Card> cards = deck.getCards();
+        deckCover.setImageDrawable(deck.getCoverImage());
+        deckName.setText(deck.getDeckName());
 
-        // TODO add image for flashcard
-//        questionImageView = findViewById(R.id.questionImage);
-//        btnAddQuesImg = findViewById(R.id.btnAddQuesImg);
-//        btnAddQuesImg.setOnClickListener(v -> openImagePicker());
-
-
+        deckNumcard.setText(String.format(Locale.ENGLISH, "%03d",deck.getSize()));
+        if(deck.getSize() > 0) {
+            cardQuestion.setText(cards.get(0).getQuestion());
+        }
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        text.setText(model.getQuestion());
+//        deckName.setText(model.getQuestion());
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        model.setQuestion(String.valueOf(text.getText()));
+//        model.setQuestion(String.valueOf(deckName.getText()));
     }
 
     private void openImagePicker() {

@@ -13,27 +13,35 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 import tdtu.fit.hrz.flashcards.R;
 import tdtu.fit.hrz.flashcards.controllers.CardRCVAdapter;
+import tdtu.fit.hrz.flashcards.controllers.DeckAdapter;
 import tdtu.fit.hrz.flashcards.objects.Card;
+import tdtu.fit.hrz.flashcards.objects.Deck;
 import tdtu.fit.hrz.flashcards.viewmodels.DeckViewModel;
 
 public class DeckEditActivity extends AppCompatActivity {
 
     private RecyclerView flashcardRCV;
     private MaterialToolbar topAppBar;
-    private TextInputEditText title;
+    private TextInputEditText edtDeckName;
     private FloatingActionButton floatingActionButton;
     private DeckViewModel model;
 
+    private ShapeableImageView deckCover;
+    private TextView deckNumcard;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,12 +52,13 @@ public class DeckEditActivity extends AppCompatActivity {
 
         //========initialize views========================
         topAppBar = findViewById(R.id.topAppBar);
-        title = findViewById(R.id.title);
+        edtDeckName = findViewById(R.id.deckName);
         flashcardRCV = findViewById(R.id.cardRCV);
         floatingActionButton = findViewById(R.id.deckEditFAB);
+        deckCover = findViewById(R.id.deckCover);
+        deckNumcard  = findViewById(R.id.deckNumCard);
 
         //========TOP BAR================================
-
         topAppBar.setOnMenuItemClickListener(item -> {
             int id  = item.getItemId();
             if(id == R.id.action_delete_deck){
@@ -58,14 +67,18 @@ public class DeckEditActivity extends AppCompatActivity {
             }
             return false;
         });
-
         topAppBar.setNavigationOnClickListener(view -> {
             super.onBackPressed();
         });
-
+        //==============================================
+        Deck deck = DeckAdapter.deckList.get(DeckAdapter.selectedPos);
+        ArrayList<Card> cards = deck.getCards();
+        deckCover.setImageDrawable(deck.getCoverImage());
+        edtDeckName.setText(deck.getDeckName());
+        deckNumcard.setText(String.format(Locale.ENGLISH, "%03d",deck.getSize()));
         //========RCV===================================
         CardRCVAdapter mRCVAdapter = new CardRCVAdapter(
-                this, R.layout.rcv_card, loadFlashcard());
+                this, R.layout.rcv_card, cards);
         flashcardRCV.setAdapter(mRCVAdapter);
         flashcardRCV.setLayoutManager(new LinearLayoutManager(this));
 
@@ -75,7 +88,7 @@ public class DeckEditActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         //===Change deck's title========================
-        title.setText(model.getDeckTitle());
+//        edtDeckName.setText(model.getDeckTitle());
     }
 
     @Override
@@ -92,7 +105,7 @@ public class DeckEditActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         //===Change deck's title========================
-        model.setDeckTitle(String.valueOf(title.getText()));
+//        model.setDeckTitle(String.valueOf(edtDeckName.getText()));
     }
 
     @Override

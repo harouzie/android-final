@@ -17,18 +17,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.imageview.ShapeableImageView;
 
+import java.sql.SQLData;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 import tdtu.fit.hrz.flashcards.R;
 import tdtu.fit.hrz.flashcards.activities.CardReviewActivity;
 import tdtu.fit.hrz.flashcards.objects.Deck;
 
-public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.ViewHolder> {
+public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.DeckViewHolder> {
     public static List<Deck> deckList;
     public static int selectedPos;
     private Context context;
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class DeckViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private final ShapeableImageView image;
         private final TextView title;
@@ -36,20 +38,41 @@ public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.ViewHolder> {
         private final TextView date;
         private final TextView cardAmount;
         private final ImageView delete;
+        private Deck deck;
 
-        public ViewHolder(View view) {
+        public DeckViewHolder(View view) {
             super(view);
             // Define click listener for the ViewHolder's View
             view.setOnClickListener(this);
 
             image = view.findViewById(R.id.image);
-            title = view.findViewById(R.id.title);
+            title = view.findViewById(R.id.edtDeckName);
             username = view.findViewById(R.id.user);
             date = view.findViewById(R.id.date);
             cardAmount = view.findViewById(R.id.amount);
             delete = view.findViewById(R.id.action_delete_deck);
 
             delete.setOnClickListener(this);
+        }
+
+        public void update(Deck deck){
+            this.deck = deck;
+            title.setText(deck.getDeckName());
+            image.setImageDrawable(deck.getCoverImage());
+            username.setText(deck.getCreator());
+
+            @SuppressLint("SimpleDateFormat")
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+            date.setText(formatter.format(deck.getLastModifiedDate()));
+
+            cardAmount.setText(String.format(Locale.ENGLISH,"%03d",deck.getSize()));
+
+            itemView.setOnCreateContextMenuListener((ContextMenu contextMenu, View view,
+                                                            ContextMenu.ContextMenuInfo contextMenuInfo) -> {
+                MenuInflater menuInflater = new MenuInflater(context);
+                menuInflater.inflate(R.menu.deck_context_menu, contextMenu);
+                selectedPos = getAdapterPosition();
+            });
         }
 
         @Override
@@ -72,31 +95,26 @@ public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.ViewHolder> {
         this.context = context;
     }
 
+//================================================
+    public void removeDeck(int selectedPos) {
+        if (selectedPos > (this.getItemCount() - 1) ) {
+            return;
+        }
+        deckList.remove(selectedPos);
+        notifyItemChanged(selectedPos);
+    }
+//================================================
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DeckViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.rcv_deck, parent, false);
-        return new ViewHolder(view);
+        return new DeckViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.title.setText(deckList.get(position).getDeckName());
-        holder.image.setImageDrawable(deckList.get(position).getCoverImage());
-        holder.username.setText(deckList.get(position).getCreator());
-
-        @SuppressLint("SimpleDateFormat")
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-        holder.date.setText(formatter.format(deckList.get(position).getLastModifiedDate()));
-
-        holder.cardAmount.setText(Integer.toString(deckList.get(position).getSize()));
-
-        holder.itemView.setOnCreateContextMenuListener((ContextMenu contextMenu, View view,
-                                                        ContextMenu.ContextMenuInfo contextMenuInfo) -> {
-            MenuInflater menuInflater = new MenuInflater(holder.itemView.getContext());
-            menuInflater.inflate(R.menu.deck_context_menu, contextMenu);
-        });
+    public void onBindViewHolder(@NonNull DeckViewHolder holder, int position) {
+        holder.update(deckList.get(position));
     }
 
     @Override

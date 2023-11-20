@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -24,8 +25,8 @@ import tdtu.fit.hrz.flashcards.activities.SignUpActivity;
 public class UserFragment extends Fragment {
 
     Button loginButton, signUpButton, logoutButton;
-    LinearLayout flashcardButton, quizButton;
     TextView haveAccountTitle, welcomeUser;
+    CardView userInfoCardView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,16 +40,11 @@ public class UserFragment extends Fragment {
         loginButton = view.findViewById(R.id.logInButton);
         logoutButton = view.findViewById(R.id.logoutButton);
         welcomeUser = view.findViewById(R.id.welcomeUser);
-
-        flashcardButton = view.findViewById(R.id.flashcardsOption);
-        quizButton = view.findViewById(R.id.quizOption);
+        userInfoCardView = view.findViewById(R.id.userInfoCardView);
 
         signUpButton.setOnClickListener(v -> signUpButtonClick(v));
         loginButton.setOnClickListener(v -> loginButtonClick(v));
         logoutButton.setOnClickListener(v -> logoutButtonClick(v));
-
-        flashcardButton.setOnClickListener(v -> flashcardLayoutClick(v));
-        quizButton.setOnClickListener(v -> quizLayoutClick(v));
 
         loginCheck();
 
@@ -87,22 +83,13 @@ public class UserFragment extends Fragment {
         Toast.makeText(getActivity(), "Logged out successfully!", Toast.LENGTH_LONG).show();
     }
 
-    public void quizLayoutClick(View view) {
-        Toast.makeText(getActivity(), "Quiz Activity was chosen!", Toast.LENGTH_SHORT).show();
-    }
-
-    public void flashcardLayoutClick(View view) {
-        Toast.makeText(getActivity(), "FlashCard Activity was chosen!", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getActivity(), MainActivity.class);
-        startActivity(intent);
-    }
-
     public void loginCheck() {
         SharedPreferences preferences = getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
         boolean isLoggedIn = preferences.getBoolean("isLoggedIn", false);
 
         if (isLoggedIn) {
             String displayName = preferences.getString("displayName", "NONE");
+            userInfoCardView.setVisibility(View.VISIBLE);
             logoutButton.setVisibility(View.VISIBLE);
             loginButton.setVisibility(View.INVISIBLE);
             signUpButton.setVisibility(View.INVISIBLE);
@@ -110,6 +97,7 @@ public class UserFragment extends Fragment {
             welcomeUser.setText("Welcome " + displayName);
             welcomeUser.setVisibility(View.VISIBLE);
         } else {
+            userInfoCardView.setVisibility(View.INVISIBLE);
             logoutButton.setVisibility(View.INVISIBLE);
             loginButton.setVisibility(View.VISIBLE);
             signUpButton.setVisibility(View.VISIBLE);

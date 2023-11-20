@@ -51,12 +51,17 @@
                 android:layout_margin="16dp">
 
 
-                <androidx.appcompat.widget.AppCompatImageView
+                <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/deckCover"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/img_deck_cover"/>
+                    android:padding="1dp"
+                    android:src="@drawable/checkered_pattern_lowres"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="?attr/colorOutline"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+                    android:scaleType="centerCrop"/>
 
                 <TextView
                     android:id="@+id/deckName"

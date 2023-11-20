@@ -7,9 +7,9 @@
     tools:context=".activities.CardReviewActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-
+        android:id="@+id/topAppBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true">
 
@@ -28,7 +28,141 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        android:layout_below="@id/topAppBarLayout"
+        android:backgroundTint="?attr/colorSurfaceContainerLow"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/deckHeadLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="16dp">
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/deckCover"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/img_deck_cover"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="6"
+                    android:layout_marginStart="16dp"
+                    android:maxLength="100"
+                    android:maxWidth="200dp"
+                    android:maxHeight="35dp"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/lorem_ipsum_long"/>
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_num_card"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/deckNumCard"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="999"
+                    android:textSize="14sp"
+                    android:gravity="left"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+            android:id="@+id/flashcardQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_below="@id/deckHeadLayout"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="3dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@id/cardDivider"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:hint="@string/your_question"
+                    app:endIconMode="clear_text">
+
+
+                </com.google.android.material.textfield.MaterialAutoCompleteTextView>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/cardDivider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_above="@id/cardBottomLayout"
+                    app:dividerColor="@color/black"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/cardBottomLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/questionHeading"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="5"
+                        android:fontFamily="sans-serif-light"
+                        android:text="@string/let_s_go"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:layout_marginEnd="16dp"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/reveal_answer">
+
+                    </Button>
+                </LinearLayout>
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
 
 </RelativeLayout>

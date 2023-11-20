@@ -30,149 +30,139 @@
             app:title="Card Edit" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <FrameLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_margin="16dp"
         android:layout_below="@id/topAppBarLayout"
-        android:orientation="vertical">
+        android:backgroundTint="?attr/colorSurfaceContainerLow"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp">
 
-        <androidx.cardview.widget.CardView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="@color/md_theme_light_questionCard"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="0dp">
+            android:layout_height="match_parent">
 
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/flashcardQuestion"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:foreground="?attr/selectableItemBackground"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="3dp">
-
-            <RelativeLayout
+            <LinearLayout
+                android:id="@+id/deckHeadLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="16dp">
 
-                <LinearLayout
-                    android:id="@+id/deckHeadLayout"
-                    android:layout_width="match_parent"
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/deckCover"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/img_deck_cover"/>
+
+                <TextView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_margin="16dp"
-                    android:paddingRight="10dp">
-
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/deckCover"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_gravity="center_vertical"
-                        android:src="@drawable/img_deck_cover"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="6"
-                        android:layout_marginStart="16dp"
-                        android:maxLength="100"
-                        android:maxWidth="200dp"
-                        android:maxHeight="35dp"
-                        android:textStyle="bold"
-                        android:fontFamily="sans-serif-light"
-                        android:text="@string/lorem_ipsum_long"/>
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_num_card"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"/>
-
-                    <TextView
-                        android:id="@+id/deckNumCard"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="999"
-                        android:textSize="14sp"
-                        android:gravity="left"
-                        android:layout_weight="1"/>
-
-                </LinearLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@id/deckHeadLayout"
-                    android:layout_above="@id/cardDivider"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="6"
                     android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:hint="@string/your_question"
-                    app:endIconMode="clear_text">
-                    <com.google.android.material.textfield.TextInputEditText
+                    android:maxLength="100"
+                    android:maxWidth="200dp"
+                    android:maxHeight="35dp"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/lorem_ipsum_long"/>
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_num_card"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/deckNumCard"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="999"
+                    android:textSize="14sp"
+                    android:gravity="left"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/flashcardQuestion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_below="@id/deckHeadLayout"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="top"
-                        android:layout_gravity="center_vertical"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.divider.MaterialDivider
-                    android:id="@+id/cardDivider"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_above="@id/cardBottomLayout"
-                    app:dividerColor="@color/black"
-                    />
-
-                <LinearLayout
-                    android:id="@+id/cardBottomLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:layout_alignParentBottom="true"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/questionHeading"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="8"
-                        android:fontFamily="sans-serif-light"
-                        android:text="@string/question"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
+                        android:layout_above="@id/cardDivider"
+                        android:layout_marginStart="16dp"
                         android:layout_marginEnd="16dp"
-                        android:layout_gravity="center_vertical"
-                        android:text="Flip">
-
-                    </Button>
-                </LinearLayout>
-            </RelativeLayout>
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:hint="@string/your_question"
+                        app:endIconMode="clear_text">
 
 
-        </androidx.cardview.widget.CardView>
+                    </com.google.android.material.textfield.MaterialAutoCompleteTextView>
 
-    </FrameLayout>
+                    <com.google.android.material.divider.MaterialDivider
+                        android:id="@+id/cardDivider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_above="@id/cardBottomLayout"
+                        app:dividerColor="@color/black"
+                        />
+
+                    <LinearLayout
+                        android:id="@+id/cardBottomLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_alignParentBottom="true"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/questionHeading"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="5"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/question"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                        <Button
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:layout_marginEnd="16dp"
+                            android:layout_gravity="center_vertical"
+                            android:text="@string/flip">
+
+                        </Button>
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
 
 </RelativeLayout>

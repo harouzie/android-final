@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/cardQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/cardDivider"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_vertical"
+        android:text="@string/lorem_ipsum_long"
+        android:textSize="18sp"/>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/cardDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/cardBottomLayout"/>
+
+    <RelativeLayout
+        android:id="@+id/cardBottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_toStartOf="@id/flip_btn">
+
+            <TextView
+                android:id="@+id/questionHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.Material3.TitleMedium"
+                android:text="@string/last_evaluation"/>
+
+            <TextView
+                android:id="@+id/evaluation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.Material3.TitleMedium"
+                android:text="Hard"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/flip_btn"
+            android:layout_width="83dp"
+            android:layout_height="56dp"
+            android:layout_margin="16dp"
+            android:layout_alignParentEnd="true"
+            android:text="@string/flip">
+
+        </Button>
+    </RelativeLayout>
+
+</RelativeLayout>

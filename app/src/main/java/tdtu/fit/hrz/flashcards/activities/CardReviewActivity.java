@@ -4,6 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.content.Intent;
@@ -22,6 +25,11 @@ import java.util.Locale;
 
 import tdtu.fit.hrz.flashcards.R;
 import tdtu.fit.hrz.flashcards.controllers.DeckAdapter;
+import tdtu.fit.hrz.flashcards.fragments.CardAnswerFragment;
+import tdtu.fit.hrz.flashcards.fragments.CardQuestionFragment;
+import tdtu.fit.hrz.flashcards.fragments.DeckDownloadFragment;
+import tdtu.fit.hrz.flashcards.fragments.DeckLibraryFragment;
+import tdtu.fit.hrz.flashcards.fragments.UserFragment;
 import tdtu.fit.hrz.flashcards.objects.Card;
 import tdtu.fit.hrz.flashcards.objects.Deck;
 import tdtu.fit.hrz.flashcards.objects.UserAccount;
@@ -29,7 +37,8 @@ import tdtu.fit.hrz.flashcards.objects.UserAccount;
 public class CardReviewActivity extends AppCompatActivity {
     private MaterialToolbar topAppBar;
     private ShapeableImageView deckCover;
-    private TextView deckName, deckNumcard, cardQuestion;
+    private TextView deckName, deckNumcard;
+    private CardQuestionFragment questionFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +48,6 @@ public class CardReviewActivity extends AppCompatActivity {
         deckCover = findViewById(R.id.deckCover);
         deckName  = findViewById(R.id.deckName);
         deckNumcard  = findViewById(R.id.deckNumCard);
-        cardQuestion = findViewById(R.id.cardQuestion);
 
         //=======================================
         topAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -68,9 +76,28 @@ public class CardReviewActivity extends AppCompatActivity {
         deckNumcard.setText(String.format(Locale.ENGLISH, "%03d",deck.getSize()));
 
 
+        questionFragment = new CardQuestionFragment();
+
         if(deck.getSize() > 0) {
-            cardQuestion.setText(cards.get(0).getQuestion());
+            Bundle bundle = new Bundle();
+            bundle.putInt("deck_pos", p);
+            questionFragment.setArguments(bundle);
         }
+
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, questionFragment).commit();
+    }
+
+    //Handling fragment switching
+    public void switchFragment() {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+
+        if (questionFragment.isAdded()) {
+            ft.replace(R.id.fragment_container, new CardAnswerFragment());
+        } else {
+            ft.replace(R.id.fragment_container, questionFragment);
+        }
+        ft.commit();
     }
 
 }

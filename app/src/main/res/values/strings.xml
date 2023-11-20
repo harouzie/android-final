@@ -47,7 +47,8 @@
     <string name="delete_deck">Delete deck</string>
     <string name="lorem_ipsum_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
     <string name="your_question">Your question</string>
+
+    <!--  Deck's review -->
     <string name="flip">Flip</string>
-    <string name="reveal_answer">Reveal answer</string>
-    <string name="let_s_go">Let\'s go</string>
+    <string name="last_evaluation">Last evaluation:</string>
 </resources>

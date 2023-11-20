@@ -110,7 +110,7 @@
             </RelativeLayout>
 
             <ImageView
-                android:id="@+id/action_delete_card"
+                android:id="@+id/action_delete_deck"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"

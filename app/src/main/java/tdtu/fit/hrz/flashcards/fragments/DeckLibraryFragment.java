@@ -1,5 +1,7 @@
 package tdtu.fit.hrz.flashcards.fragments;
 
+import android.annotation.SuppressLint;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,9 +17,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import tdtu.fit.hrz.flashcards.R;
+import tdtu.fit.hrz.flashcards.controllers.DeckAdapter;
 import tdtu.fit.hrz.flashcards.controllers.DeckRCVAdapter;
 import tdtu.fit.hrz.flashcards.objects.Card;
 import tdtu.fit.hrz.flashcards.objects.Deck;
@@ -31,9 +37,14 @@ public class DeckLibraryFragment extends Fragment {
         // Inflate the layout for this fragment
        View view = inflater.inflate(R.layout.fragment_deck_library, container, false);
 
+//        deckRCV = view.findViewById(R.id.deckRCV);
+//        DeckRCVAdapter mRCVAdapter = new DeckRCVAdapter(
+//            getActivity(), R.layout.rcv_deck, loadFlashcardCollection());
+//        deckRCV.setAdapter(mRCVAdapter);
+//        deckRCV.setLayoutManager(new LinearLayoutManager(getActivity()));
+
         deckRCV = view.findViewById(R.id.deckRCV);
-        DeckRCVAdapter mRCVAdapter = new DeckRCVAdapter(
-            getActivity(), R.layout.rcv_deck, loadFlashcardCollection());
+        DeckAdapter mRCVAdapter = new DeckAdapter(loadFlashcardCollection());
         deckRCV.setAdapter(mRCVAdapter);
         deckRCV.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -60,7 +71,31 @@ public class DeckLibraryFragment extends Fragment {
         Deck fcCat = new Deck(loadFlashcard());
         Deck fcDog = new Deck(loadFlashcard());
 
-//        fcBird.setCoverImage(Drawable.createFromPath("drawable/huhcat.png"));
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+
+        fcBird.setCoverImage(getResources().getDrawable(R.drawable.birb, null));
+        fcBird.setTitle("fucking birb");
+        fcBird.setCreator("not me");
+
+        fcCat.setCoverImage(getResources().getDrawable(R.drawable.huhcat, null));
+        fcCat.setTitle("fucking cat");
+        fcCat.setCreator("me");
+
+        fcDog.setCoverImage(getResources().getDrawable(R.drawable.tdtu_logo, null));
+        fcDog.setTitle("not fucking dog");
+        fcDog.setCreator("you");
+
+        try {
+            Date specificDate = dateFormat.parse("2021/12/20");
+
+            fcBird.setLastModifiedDate(specificDate);
+            fcCat.setLastModifiedDate(specificDate);
+            fcDog.setLastModifiedDate(specificDate);
+        } catch (ParseException e) {
+            e.printStackTrace(); // Handle the exception appropriately
+        }
+
         flashcardCollections.add(fcBird);
         flashcardCollections.add(fcCat);
         flashcardCollections.add(fcDog);

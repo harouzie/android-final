@@ -1,16 +1,13 @@
 package tdtu.fit.hrz.flashcards.fragments;
 
 import android.annotation.SuppressLint;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,27 +21,22 @@ import java.util.Date;
 
 import tdtu.fit.hrz.flashcards.R;
 import tdtu.fit.hrz.flashcards.controllers.DeckAdapter;
-import tdtu.fit.hrz.flashcards.controllers.DeckRCVAdapter;
 import tdtu.fit.hrz.flashcards.objects.Card;
 import tdtu.fit.hrz.flashcards.objects.Deck;
 
 public class DeckLibraryFragment extends Fragment {
 
     RecyclerView deckRCV;
+    public DeckAdapter mRCVAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
        View view = inflater.inflate(R.layout.fragment_deck_library, container, false);
 
-//        deckRCV = view.findViewById(R.id.deckRCV);
-//        DeckRCVAdapter mRCVAdapter = new DeckRCVAdapter(
-//            getActivity(), R.layout.rcv_deck, loadFlashcardCollection());
-//        deckRCV.setAdapter(mRCVAdapter);
-//        deckRCV.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         deckRCV = view.findViewById(R.id.deckRCV);
-        DeckAdapter mRCVAdapter = new DeckAdapter(loadFlashcardCollection());
+        mRCVAdapter = new DeckAdapter(getContext(), loadDecks());
         deckRCV.setAdapter(mRCVAdapter);
         deckRCV.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -65,8 +57,8 @@ public class DeckLibraryFragment extends Fragment {
         return super.onContextItemSelected(item);
     }
 
-    private ArrayList<Deck> loadFlashcardCollection(){
-        ArrayList<Deck> flashcardCollections = new ArrayList<>();
+    private ArrayList<Deck> loadDecks(){
+        ArrayList<Deck> decks = new ArrayList<>();
         Deck fcBird = new Deck(loadFlashcard());
         Deck fcCat = new Deck(loadFlashcard());
         Deck fcDog = new Deck(loadFlashcard());
@@ -75,15 +67,15 @@ public class DeckLibraryFragment extends Fragment {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 
         fcBird.setCoverImage(getResources().getDrawable(R.drawable.birb, null));
-        fcBird.setTitle("fucking birb");
+        fcBird.setDeckName("fucking birb");
         fcBird.setCreator("not me");
 
         fcCat.setCoverImage(getResources().getDrawable(R.drawable.huhcat, null));
-        fcCat.setTitle("fucking cat");
+        fcCat.setDeckName("fucking cat");
         fcCat.setCreator("me");
 
         fcDog.setCoverImage(getResources().getDrawable(R.drawable.tdtu_logo, null));
-        fcDog.setTitle("not fucking dog");
+        fcDog.setDeckName("not fucking dog");
         fcDog.setCreator("you");
 
         try {
@@ -96,16 +88,21 @@ public class DeckLibraryFragment extends Fragment {
             e.printStackTrace(); // Handle the exception appropriately
         }
 
-        flashcardCollections.add(fcBird);
-        flashcardCollections.add(fcCat);
-        flashcardCollections.add(fcDog);
+        decks.add(fcBird);
+        decks.add(fcCat);
+        decks.add(fcDog);
 
-        return flashcardCollections;
+
+
+        return decks;
     }
     private ArrayList<Card> loadFlashcard(){
         ArrayList<Card> f = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
-            f.add(new Card());
+            f.add(new Card(
+                    "question%d" + (i+1),
+                    "answer" + (i+1))
+            );
         }
         return f;
     }

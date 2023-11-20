@@ -4,11 +4,12 @@ import android.graphics.drawable.Drawable;
 
 import androidx.annotation.NonNull;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Deck {
-    private String title;
+public class Deck implements Serializable {
+    private String deckName;
     private boolean isDownloaded;
     private boolean isPrivate;
     private Date createDate;
@@ -16,11 +17,11 @@ public class Deck {
     private Date lastModifiedDate;
     private int size;
     private Drawable coverImage;
-    private ArrayList<Card> flashcards;
+    private ArrayList<Card> cards;
 
 
     public Deck(@NonNull ArrayList<Card> flashcards) {
-        this.flashcards = flashcards;
+        this.cards = flashcards;
         this.size = flashcards.size();
     }
 
@@ -49,7 +50,7 @@ public class Deck {
     }
 
     public int getSize() {
-        size = flashcards.size();
+        size = cards.size();
         return size;
     }
 
@@ -61,12 +62,12 @@ public class Deck {
         this.coverImage = coverImage;
     }
 
-    public String getTitle() {
-        return title;
+    public String getDeckName() {
+        return deckName;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setDeckName(String deckName) {
+        this.deckName = deckName;
     }
 
     public boolean isDownloaded() {
@@ -83,5 +84,13 @@ public class Deck {
 
     public void setPrivate(boolean aPrivate) {
         isPrivate = aPrivate;
+    }
+
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
+
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
     }
 }

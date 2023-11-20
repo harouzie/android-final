@@ -3,7 +3,6 @@ package tdtu.fit.hrz.flashcards.controllers;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -26,9 +25,10 @@ import tdtu.fit.hrz.flashcards.activities.CardReviewActivity;
 import tdtu.fit.hrz.flashcards.objects.Deck;
 
 public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.ViewHolder> {
-    private List<Deck> deckList;
-
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static List<Deck> deckList;
+    public static int selectedPos;
+    private Context context;
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private final ShapeableImageView image;
         private final TextView title;
@@ -55,18 +55,21 @@ public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.ViewHolder> {
         @Override
         public void onClick(View v) {
             int position = getAdapterPosition();
+            selectedPos = position;
             if (position == RecyclerView.NO_POSITION) return;
             if (v.getId() == R.id.action_delete_deck) {
                 Toast.makeText(v.getContext(), "Card delete, popup are you fucking sure?", Toast.LENGTH_LONG).show();
             } else {
                 Intent intent = new Intent(v.getContext(), CardReviewActivity.class);
+                intent.putExtra("deck_pos", selectedPos);
                 v.getContext().startActivity(intent);
             }
         }
     }
 
-    public DeckAdapter(List<Deck> deckList) {
+    public DeckAdapter(Context context, List<Deck> deckList) {
         this.deckList = deckList;
+        this.context = context;
     }
 
     @NonNull
@@ -79,7 +82,7 @@ public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.title.setText(deckList.get(position).getTitle());
+        holder.title.setText(deckList.get(position).getDeckName());
         holder.image.setImageDrawable(deckList.get(position).getCoverImage());
         holder.username.setText(deckList.get(position).getCreator());
 

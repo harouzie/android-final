@@ -2,7 +2,9 @@ package tdtu.fit.hrz.flashcards.controllers;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import tdtu.fit.hrz.flashcards.R;
 import tdtu.fit.hrz.flashcards.activities.CardReviewActivity;
 import tdtu.fit.hrz.flashcards.activities.DeckEditActivity;
 import tdtu.fit.hrz.flashcards.objects.Deck;
@@ -49,6 +52,11 @@ public class DeckRCVAdapter extends
     onBindViewHolder(@NonNull DeckRCVAdapter.FlashcardCollectionViewHolder holder, int position) {
         Deck fc = flashcardCollections.get(position);
         holder.update(fc);
+        holder.itemView.setOnCreateContextMenuListener((ContextMenu contextMenu, View view,
+                                                        ContextMenu.ContextMenuInfo contextMenuInfo) -> {
+            MenuInflater menuInflater = new MenuInflater(context);
+            menuInflater.inflate(R.menu.deck_context_menu, contextMenu);
+        });
     }
 
     @Override

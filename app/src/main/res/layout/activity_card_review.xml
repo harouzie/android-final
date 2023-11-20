@@ -59,6 +59,7 @@
                     android:src="@drawable/img_deck_cover"/>
 
                 <TextView
+                    android:id="@+id/deckName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -91,78 +92,76 @@
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
-            android:id="@+id/flashcardQuestion"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_below="@id/deckHeadLayout"
-            android:foreground="?attr/selectableItemBackground"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="3dp">
-
-            <RelativeLayout
+                android:id="@+id/flashcardQuestion"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_below="@id/deckHeadLayout"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp">
 
-                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_above="@id/cardDivider"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:hint="@string/your_question"
-                    app:endIconMode="clear_text">
+                    android:layout_height="match_parent">
 
-
-                </com.google.android.material.textfield.MaterialAutoCompleteTextView>
-
-                <com.google.android.material.divider.MaterialDivider
-                    android:id="@+id/cardDivider"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_above="@id/cardBottomLayout"
-                    app:dividerColor="@color/black"
-                    />
-
-                <LinearLayout
-                    android:id="@+id/cardBottomLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:layout_alignParentBottom="true"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/questionHeading"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="5"
-                        android:fontFamily="sans-serif-light"
-                        android:text="@string/let_s_go"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_above="@id/cardDivider"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
-                        android:layout_gravity="center_vertical"
-                        android:text="@string/reveal_answer">
+                        android:layout_marginBottom="16dp"
+                        android:gravity="center|center_vertical"
+                        android:text="@string/lorem_ipsum_long"
+                        android:textSize="18sp"/>
 
-                    </Button>
-                </LinearLayout>
-            </RelativeLayout>
+                    <com.google.android.material.divider.MaterialDivider
+                        android:id="@+id/cardDivider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_above="@id/cardBottomLayout"
+                        app:dividerColor="@color/black"
+                        />
 
+                    <LinearLayout
+                        android:id="@+id/cardBottomLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_alignParentBottom="true"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/questionHeading"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="5"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/let_s_go"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                        <Button
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:layout_marginEnd="16dp"
+                            android:layout_gravity="center_vertical"
+                            android:text="@string/reveal_answer">
 
-        </androidx.cardview.widget.CardView>
+                        </Button>
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
         </RelativeLayout>
-    </androidx.cardview.widget.CardView>
 
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

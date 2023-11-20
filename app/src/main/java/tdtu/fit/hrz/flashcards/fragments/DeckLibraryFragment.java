@@ -2,13 +2,18 @@ package tdtu.fit.hrz.flashcards.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -19,22 +24,34 @@ import tdtu.fit.hrz.flashcards.objects.Deck;
 
 public class DeckLibraryFragment extends Fragment {
 
-    RecyclerView flashcardCollectionRCV;
+    RecyclerView deckRCV;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
        View view = inflater.inflate(R.layout.fragment_deck_library, container, false);
 
-        flashcardCollectionRCV = view.findViewById(R.id.deckRCV);
+        deckRCV = view.findViewById(R.id.deckRCV);
         DeckRCVAdapter mRCVAdapter = new DeckRCVAdapter(
             getActivity(), R.layout.rcv_deck, loadFlashcardCollection());
-        flashcardCollectionRCV.setAdapter(mRCVAdapter);
-        flashcardCollectionRCV.setLayoutManager(new LinearLayoutManager(getActivity()));
+        deckRCV.setAdapter(mRCVAdapter);
+        deckRCV.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        getActivity().setTitle("Collections");
+        registerForContextMenu(deckRCV);
+        return view;
+    }
 
-       return view;
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.action_review_deck){
+            Toast.makeText(requireActivity(), "Review deck", Toast.LENGTH_SHORT).show();
+        } else if(id == R.id.action_edit_deck){
+            Toast.makeText(requireActivity(), "Edit deck", Toast.LENGTH_SHORT).show();
+        } else if(id == R.id.action_delete_deck){
+            Toast.makeText(requireActivity(), "Delete deck", Toast.LENGTH_SHORT).show();
+        }
+        return super.onContextItemSelected(item);
     }
 
     private ArrayList<Deck> loadFlashcardCollection(){

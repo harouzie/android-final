@@ -74,10 +74,10 @@ public class  CardRCVAdapter extends
             itemView.setOnClickListener(view -> {
                 onCardClickListener.onClick(this, getAdapterPosition());
             });
-            itemView.setOnLongClickListener(view -> {
-                onCardLongClickListener.onClick(this, getAdapterPosition());
-                return true;
-            });
+//            itemView.setOnLongClickListener(view -> {
+//                onCardLongClickListener.onClick(this, getAdapterPosition());
+//                return true;
+//            });
         }
 
         public void update(Card flashcard){

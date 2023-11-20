@@ -9,8 +9,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinator"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp">
+        android:layout_height="wrap_content">
 
         <!-- NestedScrollingChild goes here (NestedScrollView, RecyclerView, etc.). -->
         <androidx.core.widget.NestedScrollView
@@ -19,11 +18,6 @@
             app:layout_behavior="@string/searchbar_scrolling_view_behavior">
 
             <!-- Screen content goes here. -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/deckRCV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
 
         </androidx.core.widget.NestedScrollView>
 
@@ -39,12 +33,19 @@
 
         <com.google.android.material.search.SearchView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:hint="searchbar_hint"
             app:layout_anchor="@id/search_bar">
         </com.google.android.material.search.SearchView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-    
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/deckRCV"
+        android:layout_below="@id/coordinator"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="56dp"
         android:layout_height="56dp"

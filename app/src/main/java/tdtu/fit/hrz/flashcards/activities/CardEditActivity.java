@@ -4,6 +4,7 @@ import static android.widget.Toast.LENGTH_SHORT;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -16,19 +17,26 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.textfield.TextInputEditText;
 
 import tdtu.fit.hrz.flashcards.R;
+import tdtu.fit.hrz.flashcards.viewmodels.DeckViewModel;
 
 public class CardEditActivity extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
     private ImageButton btnAddQuesImg,btnAddAnsImg;
     private ImageView questionImageView;
     private MaterialToolbar topAppBar;
+    private TextInputEditText text;
+    private DeckViewModel model;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_edit);
 
+        model = new ViewModelProvider(this).get(DeckViewModel.class);
+
+        text = findViewById(R.id.question);
         topAppBar = findViewById(R.id.topAppBar);
         topAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -53,6 +61,19 @@ public class CardEditActivity extends AppCompatActivity {
 
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        text.setText(model.getQuestion());
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        model.setQuestion(String.valueOf(text.getText()));
+    }
+
     private void openImagePicker() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);

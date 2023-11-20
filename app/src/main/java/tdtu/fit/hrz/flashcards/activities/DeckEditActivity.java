@@ -33,7 +33,7 @@ public class DeckEditActivity extends AppCompatActivity {
     private MaterialToolbar topAppBar;
     private TextInputEditText title;
     private FloatingActionButton floatingActionButton;
-    private DeckViewModel model = new ViewModelProvider(this).get(DeckViewModel.class);
+    private DeckViewModel model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,7 @@ public class DeckEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_deck_edit);
 
         setTitle("Flashcard Preview");
+        model = new ViewModelProvider(this).get(DeckViewModel.class);
 
         //========initialize views========================
         topAppBar = findViewById(R.id.topAppBar);

@@ -121,12 +121,12 @@
                         android:layout_marginEnd="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="16dp"
-                        android:hint="@string/your_question"
-                        app:endIconMode="clear_text">
+                        android:hint="@string/your_question">
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/question"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:gravity="top"/>
+                            android:gravity="center_vertical|left"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
 

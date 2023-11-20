@@ -68,8 +68,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/deck_name"
-                    android:textColorHint="@color/gray"
-                    android:text="New Deck">
+                    android:textColorHint="@color/gray">
 
                 </com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>

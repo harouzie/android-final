@@ -9,11 +9,10 @@
     app:cardElevation="3dp"
     android:layout_margin="12dp">
     
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp">
-
+        android:layout_height="100dp"
+        android:padding="16dp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/image"
@@ -26,9 +25,12 @@
             android:scaleType="centerCrop"/>
 
         <RelativeLayout
-            android:layout_width="205dp"
+            android:id="@+id/info"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="16dp">
+            android:layout_marginHorizontal="16dp"
+            android:layout_toEndOf="@id/image"
+            android:layout_toStartOf="@id/info2">
 
             <TextView
                 android:id="@+id/title"
@@ -84,8 +86,10 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:id="@+id/info2"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -121,6 +125,6 @@
 
         </RelativeLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </com.google.android.material.card.MaterialCardView>

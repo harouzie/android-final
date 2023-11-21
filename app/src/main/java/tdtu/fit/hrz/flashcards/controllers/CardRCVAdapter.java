@@ -26,12 +26,14 @@ public class  CardRCVAdapter extends
     private onCardClickListener onCardClickListener;
     private onCardLongClickListener onCardLongClickListener;
 
+    public static int selectedCardIdx;
     public CardRCVAdapter(Context context, int resourceId, ArrayList<Card> flashcards) {
         this.context = context;
         this.resourceId = resourceId;
         this.flashcards = flashcards;
         this.mInflater = LayoutInflater.from(context);
         this.onCardClickListener = (view, position) -> {
+            selectedCardIdx = position;
             Intent intent = new Intent(context, CardEditActivity.class);
             context.startActivity(intent);
         };
@@ -78,7 +80,7 @@ public class  CardRCVAdapter extends
             itemView.setOnClickListener(view -> {
                 onCardClickListener.onClick(this, getAdapterPosition());
             });
-            cardQuestion = itemView.findViewById(R.id.cardQuestion);
+            cardQuestion = itemView.findViewById(R.id.cardSideText);
             cardIdx = itemView.findViewById(R.id.cardIndex);
         }
 

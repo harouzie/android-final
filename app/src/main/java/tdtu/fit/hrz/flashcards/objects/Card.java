@@ -9,7 +9,8 @@ import java.time.LocalDate;
  * tail is for answer
  */
 public class Card implements Serializable {
-
+    public static String ACTION_CREATE_CARD = "tdtu.fit.hrz.flashcards.ACTION_CREATE_CARD";
+    public static String ACTION_EDIT_CARD = "tdtu.fit.hrz.flashcards.ACTION_EDIT_CARD";
     private int index = 0;
     private String question;
     private String answer;

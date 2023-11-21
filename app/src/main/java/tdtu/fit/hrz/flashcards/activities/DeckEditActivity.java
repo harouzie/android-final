@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -22,7 +23,6 @@ import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 import tdtu.fit.hrz.flashcards.R;
@@ -34,7 +34,7 @@ import tdtu.fit.hrz.flashcards.viewmodels.DeckViewModel;
 
 public class DeckEditActivity extends AppCompatActivity {
 
-    private RecyclerView flashcardRCV;
+    private RecyclerView deckRCV;
     private MaterialToolbar topAppBar;
     private TextInputEditText edtDeckName;
     private FloatingActionButton floatingActionButton;
@@ -47,13 +47,12 @@ public class DeckEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deck_edit);
 
-        setTitle("Flashcard Preview");
         model = new ViewModelProvider(this).get(DeckViewModel.class);
 
         //========initialize views========================
         topAppBar = findViewById(R.id.topAppBar);
         edtDeckName = findViewById(R.id.deckName);
-        flashcardRCV = findViewById(R.id.cardRCV);
+        deckRCV = findViewById(R.id.cardRCV);
         floatingActionButton = findViewById(R.id.deckEditFAB);
         deckCover = findViewById(R.id.deckCover);
         deckNumcard  = findViewById(R.id.deckNumCard);
@@ -70,17 +69,28 @@ public class DeckEditActivity extends AppCompatActivity {
         topAppBar.setNavigationOnClickListener(view -> {
             super.onBackPressed();
         });
-        //==============================================
-        Deck deck = DeckAdapter.deckList.get(DeckAdapter.selectedPos);
-        ArrayList<Card> cards = deck.getCards();
-        deckCover.setImageDrawable(deck.getCoverImage());
-        edtDeckName.setText(deck.getDeckName());
-        deckNumcard.setText(String.format(Locale.ENGLISH, "%03d",deck.getSize()));
-        //========RCV===================================
-        CardRCVAdapter mRCVAdapter = new CardRCVAdapter(
-                this, R.layout.rcv_card, cards);
-        flashcardRCV.setAdapter(mRCVAdapter);
-        flashcardRCV.setLayoutManager(new LinearLayoutManager(this));
+        //============HANDLE INTENT==================================
+        String action = getIntent().getAction();
+//        assert action != null;
+        if (action.equals(Deck.ACTION_CREATE_DECK)){
+            edtDeckName.setText(R.string.new_deck);
+            deckNumcard.setText(String.format(Locale.ENGLISH, "%03d", 0));
+
+            topAppBar.setTitle("Deck Create");
+
+        } else if (action.equals(Deck.ACTION_EDIT_DECK)) {
+            Deck deck = DeckAdapter.deckList.get(DeckAdapter.selectedPos);
+            ArrayList<Card> cards = deck.getCards();
+            deckCover.setImageDrawable(deck.getCoverImage());
+            edtDeckName.setText(deck.getDeckName());
+            deckNumcard.setText(String.format(Locale.ENGLISH, "%03d",deck.getSize()));
+
+            //========RCV===================================
+            CardRCVAdapter mRCVAdapter = new CardRCVAdapter(
+                    this, R.layout.rcv_card, cards);
+            deckRCV.setAdapter(mRCVAdapter);
+            deckRCV.setLayoutManager(new LinearLayoutManager(this));
+        }
 
     }
 

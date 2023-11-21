@@ -7,4 +7,5 @@
         android:icon="@drawable/ic_delete"
         android:title="@string/add_new_flashcard">
     </item>
+
 </menu>

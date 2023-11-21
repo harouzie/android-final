@@ -56,6 +56,7 @@ public class CardReviewActivity extends AppCompatActivity {
                 int id  = item.getItemId();
                 if(id == R.id.action_edit_deck){
                     Intent intent = new Intent(CardReviewActivity.this, DeckEditActivity.class);
+                    intent.setAction(Deck.ACTION_EDIT_DECK);
                     startActivity(intent);
                     return true;
                 }

@@ -11,6 +11,9 @@ import java.util.Date;
 import java.util.List;
 
 public class Deck implements Serializable {
+    public static String ACTION_CREATE_DECK = "tdtu.fit.hrz.flashcards.ACTION_CREATE_DECK";
+    public static String ACTION_EDIT_DECK = "tdtu.fit.hrz.flashcards.ACTION_EDIT_DECK";
+
     private String deckName;
     private boolean isDownloaded;
     private boolean isPrivate;

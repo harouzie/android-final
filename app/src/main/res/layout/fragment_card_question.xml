@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/cardQuestion"
+        android:id="@+id/cardSideText"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/cardDivider"
@@ -38,7 +38,7 @@
             android:layout_toStartOf="@id/flip_btn">
 
             <TextView
-                android:id="@+id/questionHeading"
+                android:id="@+id/cardQA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/TextAppearance.Material3.TitleMedium"

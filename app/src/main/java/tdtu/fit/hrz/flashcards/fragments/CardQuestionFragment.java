@@ -28,7 +28,7 @@ public class CardQuestionFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_card_question, container, false);
 
         flipButton = view.findViewById(R.id.flip_btn);
-        cardQuestion = view.findViewById(R.id.cardQuestion);
+        cardQuestion = view.findViewById(R.id.cardSideText);
 
         Bundle bundle = getArguments();
         if (bundle != null) {

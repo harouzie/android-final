@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ import java.util.List;
 import java.util.Locale;
 
 import tdtu.fit.hrz.flashcards.R;
+import tdtu.fit.hrz.flashcards.controllers.CardRCVAdapter;
 import tdtu.fit.hrz.flashcards.controllers.DeckAdapter;
 import tdtu.fit.hrz.flashcards.objects.Card;
 import tdtu.fit.hrz.flashcards.objects.Deck;
@@ -35,10 +37,11 @@ public class CardEditActivity extends AppCompatActivity {
     private ImageButton btnAddQuesImg,btnAddAnsImg;
     private ImageView questionImageView;
     private MaterialToolbar topAppBar;
-    private TextInputEditText cardQuestion;
+    private TextInputEditText cardTextInput;
     private DeckViewModel model;
     private ShapeableImageView deckCover;
-    private TextView deckNumcard, deckName;
+    private TextView deckNumcard, deckName, cardQAText;
+    private Button flipButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +53,10 @@ public class CardEditActivity extends AppCompatActivity {
         deckCover = findViewById(R.id.deckCover);
         deckName  = findViewById(R.id.deckName);
         deckNumcard  = findViewById(R.id.deckNumCard);
-        cardQuestion = findViewById(R.id.cardQuestion);
+        cardTextInput = findViewById(R.id.cardSideText);
+        flipButton =  findViewById(R.id.flipButton);
+        cardQAText =  findViewById(R.id.cardQA);
+        //=======TOP APP BAR========================================================
         topAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -65,16 +71,36 @@ public class CardEditActivity extends AppCompatActivity {
         topAppBar.setNavigationOnClickListener(view -> {
             super.onBackPressed();
         });
+        //========DECK and CARD Binding=======================================================
 
         Deck deck = DeckAdapter.deckList.get(DeckAdapter.selectedPos);
         List<Card> cards = deck.getCards();
+        Card selectedCard = cards.get(CardRCVAdapter.selectedCardIdx);
+
         deckCover.setImageDrawable(deck.getCoverImage());
         deckName.setText(deck.getDeckName());
-
         deckNumcard.setText(String.format(Locale.ENGLISH, "%03d",deck.getSize()));
-        if(deck.getSize() > 0) {
-            cardQuestion.setText(cards.get(0).getQuestion());
+
+        if (deck.getSize() != 0) {
+            cardTextInput.setText(selectedCard.getQuestion());
         }
+
+        //===============================================================
+        flipButton.setOnClickListener(view -> {
+            if (selectedCard.isFlipped()){
+                // flipped = answer -> set to ques now
+                cardQAText.setText(R.string.question);
+                cardTextInput.setHint("Your question");
+                cardTextInput.setText(selectedCard.getQuestion());
+                selectedCard.flip();
+            } else {
+                //not flipped yet = currently question side -> set to ans now
+                cardQAText.setText(R.string.answer);
+                cardTextInput.setHint("Your answer");
+                cardTextInput.setText(selectedCard.getAnswer());
+                selectedCard.flip();
+            }
+        });
     }
 
     @Override

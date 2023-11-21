@@ -1,5 +1,7 @@
 package tdtu.fit.hrz.flashcards.fragments;
 
+import static tdtu.fit.hrz.flashcards.objects.Deck.ACTION_CREATE_DECK;
+
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,11 +19,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Random;
 
 import tdtu.fit.hrz.flashcards.R;
 import tdtu.fit.hrz.flashcards.activities.CardReviewActivity;
@@ -34,19 +39,26 @@ public class DeckLibraryFragment extends Fragment {
 
     RecyclerView deckRCV;
     public DeckAdapter mRCVAdapter;
+    private FloatingActionButton floatingActionButton;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-       View view = inflater.inflate(R.layout.fragment_deck_library, container, false);
+        View view = inflater.inflate(R.layout.fragment_deck_library, container, false);
 
 
         deckRCV = view.findViewById(R.id.deckRCV);
         mRCVAdapter = new DeckAdapter(getContext(), loadDecks());
         deckRCV.setAdapter(mRCVAdapter);
         deckRCV.setLayoutManager(new LinearLayoutManager(getActivity()));
+        // ========FAB =========================
+        floatingActionButton = view.findViewById(R.id.libraryFAB);
+        floatingActionButton.setOnClickListener(view1 -> {
+            Intent intent = new Intent(requireActivity(), DeckEditActivity.class);
+            intent.setAction(ACTION_CREATE_DECK);
+            startActivity(intent);
+        });
 
-        registerForContextMenu(deckRCV);
         return view;
     }
 
@@ -58,6 +70,7 @@ public class DeckLibraryFragment extends Fragment {
             startActivity(intent);
         } else if(id == R.id.action_edit_deck){
             Intent intent = new Intent(getActivity(), DeckEditActivity.class);
+            intent.setAction(Deck.ACTION_EDIT_DECK);
             startActivity(intent);
         } else if(id == R.id.action_delete_deck){
             AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
@@ -87,7 +100,7 @@ public class DeckLibraryFragment extends Fragment {
         fcCat.setDeckName("fucking cat");
         fcCat.setCreator("me");
 
-        fcDog.setCoverImage(getResources().getDrawable(R.drawable.tdtu_logo, null));
+        fcDog.setCoverImage(getResources().getDrawable(android.R.drawable.sym_def_app_icon, null));
         fcDog.setDeckName("not fucking dog");
         fcDog.setCreator("you");
 
@@ -106,12 +119,12 @@ public class DeckLibraryFragment extends Fragment {
         decks.add(fcDog);
 
 
-
         return decks;
     }
     private ArrayList<Card> loadFlashcard(){
         ArrayList<Card> f = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
+        Random random = new Random();
+        for (int i = 0; i < random.nextInt(100); i++) {
             f.add(new Card(
                     "question " + (i+1),
                     "answer" + (i+1))

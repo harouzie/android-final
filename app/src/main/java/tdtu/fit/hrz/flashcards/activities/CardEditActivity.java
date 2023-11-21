@@ -28,6 +28,7 @@ import java.util.Locale;
 import tdtu.fit.hrz.flashcards.R;
 import tdtu.fit.hrz.flashcards.controllers.CardRCVAdapter;
 import tdtu.fit.hrz.flashcards.controllers.DeckAdapter;
+import tdtu.fit.hrz.flashcards.controllers.StorageManager;
 import tdtu.fit.hrz.flashcards.objects.Card;
 import tdtu.fit.hrz.flashcards.objects.Deck;
 import tdtu.fit.hrz.flashcards.viewmodels.DeckViewModel;
@@ -58,8 +59,9 @@ public class CardEditActivity extends AppCompatActivity {
         cardQAText =  findViewById(R.id.cardQA);
 
         //========DECK and CARD Binding=======================================================
+        StorageManager storageManager = StorageManager.getInstance();
 
-        Deck deck = DeckAdapter.deckList.get(DeckAdapter.selectedPos);
+        Deck deck = storageManager.getDecks().get(DeckAdapter.selectedDeckIdx);
         List<Card> cards = deck.getCards();
         Card selectedCard = cards.get(CardRCVAdapter.selectedCardIdx);
 

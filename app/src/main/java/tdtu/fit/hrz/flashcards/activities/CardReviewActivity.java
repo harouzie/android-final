@@ -1,43 +1,31 @@
 package tdtu.fit.hrz.flashcards.activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.imageview.ShapeableImageView;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import tdtu.fit.hrz.flashcards.R;
 import tdtu.fit.hrz.flashcards.controllers.DeckAdapter;
+import tdtu.fit.hrz.flashcards.controllers.StorageManager;
 import tdtu.fit.hrz.flashcards.fragments.CardAnswerFragment;
 import tdtu.fit.hrz.flashcards.fragments.CardQuestionFragment;
-import tdtu.fit.hrz.flashcards.fragments.DeckDownloadFragment;
-import tdtu.fit.hrz.flashcards.fragments.DeckLibraryFragment;
-import tdtu.fit.hrz.flashcards.fragments.UserFragment;
 import tdtu.fit.hrz.flashcards.objects.Card;
 import tdtu.fit.hrz.flashcards.objects.Deck;
-import tdtu.fit.hrz.flashcards.objects.UserAccount;
 import tdtu.fit.hrz.flashcards.viewmodels.CardReviewViewModel;
-import tdtu.fit.hrz.flashcards.viewmodels.DeckViewModel;
 
 public class CardReviewActivity extends AppCompatActivity {
     private MaterialToolbar topAppBar;
@@ -75,8 +63,10 @@ public class CardReviewActivity extends AppCompatActivity {
         });
 
         //=========================================
+        StorageManager storageManager = StorageManager.getInstance();
+
         model = new ViewModelProvider(this).get(CardReviewViewModel.class);
-        Deck deck = DeckAdapter.deckList.get(DeckAdapter.selectedPos);
+        Deck deck = storageManager.getDecks().get(DeckAdapter.selectedDeckIdx);
         List<Card> cards = deck.getDueDateCard();
 
         deckCover.setImageDrawable(deck.getCoverImage());

@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.imageview.ShapeableImageView;
 
-import java.sql.SQLData;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
@@ -27,11 +26,10 @@ import tdtu.fit.hrz.flashcards.activities.CardReviewActivity;
 import tdtu.fit.hrz.flashcards.objects.Deck;
 
 public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.DeckViewHolder> {
-    public static List<Deck> deckList;
-    public static int selectedPos;
+    private static List<Deck> deckList;
+    public static int selectedDeckIdx;
     private Context context;
     public class DeckViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
         private final ShapeableImageView image;
         private final TextView title;
         private final TextView username;
@@ -71,20 +69,20 @@ public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.DeckViewHolder
                                                             ContextMenu.ContextMenuInfo contextMenuInfo) -> {
                 MenuInflater menuInflater = new MenuInflater(context);
                 menuInflater.inflate(R.menu.deck_context_menu, contextMenu);
-                selectedPos = getAdapterPosition();
+                selectedDeckIdx = getAdapterPosition();
             });
         }
 
         @Override
         public void onClick(View v) {
             int position = getAdapterPosition();
-            selectedPos = position;
+            selectedDeckIdx = position;
             if (position == RecyclerView.NO_POSITION) return;
             if (v.getId() == R.id.action_delete_deck) {
                 Toast.makeText(v.getContext(), "Card delete, popup are you fucking sure?", Toast.LENGTH_LONG).show();
             } else {
                 Intent intent = new Intent(v.getContext(), CardReviewActivity.class);
-                intent.putExtra("deck_pos", selectedPos);
+                intent.putExtra("deck_pos", selectedDeckIdx);
                 v.getContext().startActivity(intent);
             }
         }

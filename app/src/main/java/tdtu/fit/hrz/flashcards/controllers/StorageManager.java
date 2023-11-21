@@ -1,7 +1,13 @@
 package tdtu.fit.hrz.flashcards.controllers;
 
+import static tdtu.fit.hrz.flashcards.R.drawable.birb;
+import static tdtu.fit.hrz.flashcards.R.drawable.circle_border;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+
+import androidx.annotation.NonNull;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,8 +23,9 @@ public class StorageManager {
 
     private static StorageManager instance;
     private static ArrayList<Deck> decks = new ArrayList<>();
-
+    public static Context context;
     private StorageManager(){
+
         decks = loadDecks();
     }
     public static StorageManager getInstance() {
@@ -37,6 +44,7 @@ public class StorageManager {
     }
 
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private ArrayList<Deck> loadDecks(){
         ArrayList<Deck> decks = new ArrayList<>();
         Deck fcBird = new Deck(loadFlashcard());
@@ -46,16 +54,16 @@ public class StorageManager {
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 
-//        fcBird.setCoverImage(R.drawable.birb);
-        fcBird.setDeckName("fucking birb");
+        fcBird.setCoverImage(context.getResources().getDrawable(R.drawable.birb, null));
+        fcBird.setDeckName("birbs");
         fcBird.setCreator("not me");
 
-//        fcCat.setCoverImage(getResources().getDrawable(R.drawable.huhcat, null));
-        fcCat.setDeckName("fucking cat");
+        fcCat.setCoverImage(context.getResources().getDrawable(R.drawable.huhcat, null));
+        fcCat.setDeckName("huh cat");
         fcCat.setCreator("me");
 
-//        fcDog.setCoverImage(getResources().getDrawable(android.R.drawable.sym_def_app_icon, null));
-        fcDog.setDeckName("not fucking dog");
+        fcDog.setCoverImage(context.getResources().getDrawable(android.R.drawable.sym_def_app_icon, null));
+        fcDog.setDeckName("My Deck");
         fcDog.setCreator("you");
 
         try {

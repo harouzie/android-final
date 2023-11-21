@@ -11,6 +11,7 @@ import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import tdtu.fit.hrz.flashcards.R;
+import tdtu.fit.hrz.flashcards.controllers.StorageManager;
 import tdtu.fit.hrz.flashcards.fragments.DeckDownloadFragment;
 import tdtu.fit.hrz.flashcards.fragments.DeckLibraryFragment;
 import tdtu.fit.hrz.flashcards.fragments.UserFragment;
@@ -28,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
         navBar = findViewById(R.id.bottom_navigation);
         navBar.setSelectedItemId(R.id.nav_library);
         //
-
+        StorageManager.context = this;
+        StorageManager storageManager = StorageManager.getInstance();
     }
 
     @Override

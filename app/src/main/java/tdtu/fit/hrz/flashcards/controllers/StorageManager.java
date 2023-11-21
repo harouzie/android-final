@@ -34,6 +34,8 @@ public class StorageManager {
     private static List<String> jsonFiles = new ArrayList<>();
     private static List<String> deckJsons = new ArrayList<>();
 
+    private final String path = "app/sampledata/data.json";
+    private final String url = "https://raw.githubusercontent.com/harouzie/android-final/master/app/sampledata/data.json";
     private static DeckSerializer deckSerializer;
     public static Context context;
 
@@ -41,7 +43,6 @@ public class StorageManager {
         decks = loadDecks();
         deckSerializer = new DeckSerializer();
         writeToJson(decks);
-//        decks = loadFromJson();
     }
 
     public static StorageManager getInstance() {
@@ -77,6 +78,15 @@ public class StorageManager {
         }
     }
 
+    private void writeDeck(Deck deck){
+        try {
+            FileOutputStream fos = new FileOutputStream(path);
+            fos.write(deckSerializer.serializeDeck(deck).getBytes());
+            fos.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     private ArrayList<Deck> loadFromJson(){
 
         ArrayList<Deck> loadedDecks = new ArrayList<>();

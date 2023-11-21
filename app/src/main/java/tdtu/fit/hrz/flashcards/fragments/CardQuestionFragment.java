@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,11 @@ public class CardQuestionFragment extends Fragment {
         model = new ViewModelProvider(requireActivity()).get(CardReviewViewModel.class);
 
         cardQuestion.setText(model.getCards().get(model.getCurrentCard()).getQuestion());
-
+        Log.i("00000", "onCreate Review: " + model.getCards().get(model.getCurrentCard()).getQuestion() + " algo: " + " | " + model.getCards().get(model.getCurrentCard()).getInterval());
+        if (model.getCurrentCard() != 0) {
+            Log.i("0000pre", "onCreate Review: " + model.getCards().get(model.getCurrentCard()-1).getQuestion() + " algo: " +
+                    model.getCards().get(model.getCurrentCard()-1).getNextPractice().toString() + " | " + model.getCards().get(model.getCurrentCard()-1).getInterval());
+        }
         return view;
     }
 

@@ -1,5 +1,7 @@
 package tdtu.fit.hrz.flashcards.objects;
 
+import android.util.Log;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -70,6 +72,23 @@ public class Card implements Serializable {
 
     //Spaced repetition SM-2, anki based algorithm
 
+
+    public int getInterval() {
+        return interval;
+    }
+
+    public int getRepetitions() {
+        return repetitions;
+    }
+
+    public float getEase() {
+        return ease;
+    }
+
+    public LocalDate getNextPractice() {
+        return nextPractice;
+    }
+
     public void updateNextPractice(int rating) {
         if (rating < 1 || rating > 4) {
             throw new IllegalArgumentException("Rating should be between 1 and 4");
@@ -92,8 +111,10 @@ public class Card implements Serializable {
     }
 
     public boolean isDueDate() {
-        if (nextPractice == null) return true;
-        if (nextPractice.isAfter(LocalDate.now()) || nextPractice.isEqual(LocalDate.now())) {
+        if (this.nextPractice == null) return true;
+        if (LocalDate.now().isAfter(this.nextPractice) || this.nextPractice.isEqual(LocalDate.now())) {
+            Log.i("InCard0101", "isDueDate: " + this.getNextPractice().toString() + " |LocalDate.now|:" + LocalDate.now().toString() +
+                    " |boolean check|:" + this.nextPractice.isAfter(LocalDate.now()) + " | " + this.nextPractice.isEqual(LocalDate.now()));
             return true;
         }
         return false;

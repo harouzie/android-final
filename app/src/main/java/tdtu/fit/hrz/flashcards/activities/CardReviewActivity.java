@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -76,13 +77,18 @@ public class CardReviewActivity extends AppCompatActivity {
         //=========================================
         model = new ViewModelProvider(this).get(CardReviewViewModel.class);
         Deck deck = DeckAdapter.deckList.get(DeckAdapter.selectedPos);
-        model.setCards(deck.getDueDateCard());
+        List<Card> cards = deck.getDueDateCard();
 
         deckCover.setImageDrawable(deck.getCoverImage());
         deckName.setText(deck.getDeckName());
         deckNumcard.setText(String.format(Locale.ENGLISH, "%03d",deck.getSize()));
 
-        switchFragment(-1); //-1 is only for load first question of the first card, one time use
+        if (cards.size() == 0) {
+            Toast.makeText(getApplicationContext(), "No card need reviewing left today in this deck", Toast.LENGTH_LONG).show();
+        } else {
+            model.setCards(cards);
+            switchFragment(-1); //-1 is only for load first question of the first card, one time use
+        }
     }
 
     //Handling fragment switching

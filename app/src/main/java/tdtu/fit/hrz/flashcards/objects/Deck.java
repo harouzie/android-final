@@ -103,9 +103,6 @@ public class Deck implements Serializable {
         this.cards = cards;
     }
 
-
-    // these 2 functions currently useless,
-    // cuz it return a list of card objects that didn't linked to the real cards in data
     public ArrayList<Card> getDueDateCard() {
         ArrayList<Card> dueDateCards = new ArrayList<>();
         for (int i = 0; i <= cards.size()-1; i++) {

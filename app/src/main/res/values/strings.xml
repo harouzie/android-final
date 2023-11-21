@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">App Name</string>
+    <string name="app_name">MemoCard</string>
     <string name="welcome">welcome !</string>
     <string name="flashcard_title">Flashcards</string>
     <string name="quiz_title">Quizzes</string>

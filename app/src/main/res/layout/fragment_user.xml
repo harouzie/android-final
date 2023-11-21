@@ -123,6 +123,40 @@
 
         </androidx.cardview.widget.CardView>
 
+        <LinearLayout
+            android:id="@+id/alarmLayout"
+            android:layout_width="250dp"
+            android:layout_height="35dp"
+            android:layout_below="@id/loginOptionsLayout"
+            android:layout_marginTop="150dp"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:id="@+id/timePickerTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="20:00"
+                android:textSize="22sp"
+                android:gravity="center"
+                android:layout_weight="6"/>
+
+            <Switch
+                android:id="@+id/reminderSwitch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"/>
+
+            <TextView
+                android:id="@+id/switchTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Daily notification"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:layout_weight="7"/>
+
+        </LinearLayout>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/logoutButton"
             android:layout_width="wrap_content"

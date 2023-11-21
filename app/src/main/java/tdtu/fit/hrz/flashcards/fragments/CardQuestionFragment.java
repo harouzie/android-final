@@ -1,6 +1,7 @@
 package tdtu.fit.hrz.flashcards.fragments;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,11 +17,13 @@ import tdtu.fit.hrz.flashcards.activities.CardReviewActivity;
 import tdtu.fit.hrz.flashcards.controllers.DeckAdapter;
 import tdtu.fit.hrz.flashcards.objects.Card;
 import tdtu.fit.hrz.flashcards.objects.Deck;
+import tdtu.fit.hrz.flashcards.viewmodels.CardReviewViewModel;
 
 public class CardQuestionFragment extends Fragment {
 
     private Button flipButton;
     private TextView cardQuestion;
+    private CardReviewViewModel model;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -30,13 +33,9 @@ public class CardQuestionFragment extends Fragment {
         flipButton = view.findViewById(R.id.flip_btn);
         cardQuestion = view.findViewById(R.id.cardSideText);
 
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            int p = bundle.getInt("deck_pos");
-            Deck deck = DeckAdapter.deckList.get(p);
-            List<Card> cards = deck.getCards();
-            cardQuestion.setText(cards.get(0).getQuestion());
-        }
+        model = new ViewModelProvider(requireActivity()).get(CardReviewViewModel.class);
+
+        cardQuestion.setText(model.getCards().get(model.getCurrentCard()).getQuestion());
 
         return view;
     }
@@ -46,7 +45,7 @@ public class CardQuestionFragment extends Fragment {
         super.onResume();
         flipButton.setOnClickListener(v -> {
             CardReviewActivity activity = (CardReviewActivity) getActivity();
-            activity.switchFragment();
+            activity.switchFragment(0);
         });
     }
 }

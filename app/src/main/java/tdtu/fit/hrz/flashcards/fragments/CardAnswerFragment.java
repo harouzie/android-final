@@ -3,6 +3,7 @@ package tdtu.fit.hrz.flashcards.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import tdtu.fit.hrz.flashcards.activities.CardReviewActivity;
 import tdtu.fit.hrz.flashcards.controllers.DeckAdapter;
 import tdtu.fit.hrz.flashcards.objects.Card;
 import tdtu.fit.hrz.flashcards.objects.Deck;
+import tdtu.fit.hrz.flashcards.viewmodels.CardReviewViewModel;
 
 public class CardAnswerFragment extends Fragment {
 
@@ -26,6 +28,7 @@ public class CardAnswerFragment extends Fragment {
     private Button easy;
 
     private TextView cardAnswer;
+    private CardReviewViewModel model;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,13 +42,9 @@ public class CardAnswerFragment extends Fragment {
         easy = view.findViewById(R.id.easy);
         cardAnswer = view.findViewById(R.id.cardAnswer);
 
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            int p = bundle.getInt("deck_pos");
-            Deck deck = DeckAdapter.deckList.get(p);
-            List<Card> cards = deck.getCards();
-            cardAnswer.setText(cards.get(0).getAnswer());
-        }
+        model = new ViewModelProvider(requireActivity()).get(CardReviewViewModel.class);
+
+        cardAnswer.setText(model.getCards().get(model.getCurrentCard()).getAnswer());
 
         return view;
     }
@@ -56,7 +55,22 @@ public class CardAnswerFragment extends Fragment {
 
         again.setOnClickListener(v -> {
             CardReviewActivity activity = (CardReviewActivity) getActivity();
-            activity.switchFragment();
+            activity.switchFragment(1);
+        });
+
+        hard.setOnClickListener(v -> {
+            CardReviewActivity activity = (CardReviewActivity) getActivity();
+            activity.switchFragment(2);
+        });
+
+        good.setOnClickListener(v -> {
+            CardReviewActivity activity = (CardReviewActivity) getActivity();
+            activity.switchFragment(3);
+        });
+
+        easy.setOnClickListener(v -> {
+            CardReviewActivity activity = (CardReviewActivity) getActivity();
+            activity.switchFragment(4);
         });
     }
 }

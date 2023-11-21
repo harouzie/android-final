@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.imageview.ShapeableImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -33,12 +35,16 @@ import tdtu.fit.hrz.flashcards.fragments.UserFragment;
 import tdtu.fit.hrz.flashcards.objects.Card;
 import tdtu.fit.hrz.flashcards.objects.Deck;
 import tdtu.fit.hrz.flashcards.objects.UserAccount;
+import tdtu.fit.hrz.flashcards.viewmodels.CardReviewViewModel;
+import tdtu.fit.hrz.flashcards.viewmodels.DeckViewModel;
 
 public class CardReviewActivity extends AppCompatActivity {
     private MaterialToolbar topAppBar;
     private ShapeableImageView deckCover;
     private TextView deckName, deckNumcard;
     private CardQuestionFragment questionFragment;
+    private CardAnswerFragment answerFragment;
+    private CardReviewViewModel model;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,37 +74,43 @@ public class CardReviewActivity extends AppCompatActivity {
         });
 
         //=========================================
-        Intent intent = getIntent();
-        int p = intent.getIntExtra("deck_pos", 0);
-        Deck deck = DeckAdapter.deckList.get(p);
-        List<Card> cards = deck.getCards();
+        model = new ViewModelProvider(this).get(CardReviewViewModel.class);
+        Deck deck = DeckAdapter.deckList.get(DeckAdapter.selectedPos);
+        model.setCards(deck.getDueDateCard());
+
         deckCover.setImageDrawable(deck.getCoverImage());
         deckName.setText(deck.getDeckName());
         deckNumcard.setText(String.format(Locale.ENGLISH, "%03d",deck.getSize()));
 
-
-        questionFragment = new CardQuestionFragment();
-
-        if(deck.getSize() > 0) {
-            Bundle bundle = new Bundle();
-            bundle.putInt("deck_pos", p);
-            questionFragment.setArguments(bundle);
-        }
-
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, questionFragment).commit();
+        switchFragment(-1); //-1 is only for load first question of the first card, one time use
     }
 
     //Handling fragment switching
-    public void switchFragment() {
+    public void switchFragment(int rating) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
 
-        if (questionFragment.isAdded()) {
-            ft.replace(R.id.fragment_container, new CardAnswerFragment());
-        } else {
+        if (rating == -1) {
+            questionFragment = new CardQuestionFragment();
             ft.replace(R.id.fragment_container, questionFragment);
+        } else if (rating == 0) {
+            ft.replace(R.id.fragment_container, new CardAnswerFragment());
+        } else if (rating == 1) {
+            model.getCards().get(model.getCurrentCard()).updateNextPractice(rating);
+            ft.replace(R.id.fragment_container, questionFragment);
+        } else {
+            model.getCards().get(model.getCurrentCard()).updateNextPractice(rating);
+            model.setCurrentCard(model.getCurrentCard()+1);
+
+            if (!model.isOver()) {
+                questionFragment = new CardQuestionFragment();
+                ft.replace(R.id.fragment_container, questionFragment);
+            } else {
+                //done reviewing, maybe show popup congratulation, then back to library
+                Toast.makeText(getApplicationContext(), "Done reviewing for this deck today", Toast.LENGTH_LONG).show();
+                finish();
+            }
         }
         ft.commit();
     }
-
 }

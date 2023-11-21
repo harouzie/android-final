@@ -50,7 +50,7 @@ public class DeckLibraryFragment extends Fragment {
         StorageManager storageManager = StorageManager.getInstance();
 
         deckRCV = view.findViewById(R.id.deckRCV);
-        mRCVAdapter = new DeckAdapter(getContext(), storageManager.getDecks());
+        mRCVAdapter = new DeckAdapter(getContext(), this, storageManager.getDecks());
         deckRCV.setAdapter(mRCVAdapter);
         deckRCV.setLayoutManager(new LinearLayoutManager(getActivity()));
         // ========FAB =========================

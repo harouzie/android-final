@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.imageview.ShapeableImageView;
@@ -23,12 +24,16 @@ import java.util.Locale;
 
 import tdtu.fit.hrz.flashcards.R;
 import tdtu.fit.hrz.flashcards.activities.CardReviewActivity;
+import tdtu.fit.hrz.flashcards.fragments.DeckDownloadFragment;
+import tdtu.fit.hrz.flashcards.fragments.DeckLibraryFragment;
 import tdtu.fit.hrz.flashcards.objects.Deck;
 
 public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.DeckViewHolder> {
-    private static List<Deck> deckList;
+    private List<Deck> deckList;
     public static int selectedDeckIdx;
+    StorageManager sm = StorageManager.getInstance();
     private Context context;
+    private Fragment fragment;
     public class DeckViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final ShapeableImageView image;
         private final TextView title;
@@ -82,15 +87,16 @@ public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.DeckViewHolder
                 Toast.makeText(v.getContext(), "Card delete, popup are you fucking sure?", Toast.LENGTH_LONG).show();
             } else {
                 Intent intent = new Intent(v.getContext(), CardReviewActivity.class);
-                intent.putExtra("deck_pos", selectedDeckIdx);
+                intent.putExtra("deck_pos", position);
                 v.getContext().startActivity(intent);
             }
         }
     }
 
-    public DeckAdapter(Context context, List<Deck> deckList) {
+    public DeckAdapter(Context context, Fragment fragment, List<Deck> deckList) {
         this.deckList = deckList;
         this.context = context;
+        this.fragment = fragment;
     }
 
 //================================================
@@ -98,7 +104,7 @@ public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.DeckViewHolder
         if (selectedPos > (this.getItemCount() - 1) ) {
             return;
         }
-        deckList.remove(selectedPos);
+        sm.getDecks().remove(selectedPos);
         notifyItemChanged(selectedPos);
     }
 //================================================
@@ -112,7 +118,19 @@ public class DeckAdapter extends RecyclerView.Adapter<DeckAdapter.DeckViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull DeckViewHolder holder, int position) {
+        Deck deck = sm.getDecks().get(position);
+        if (fragment instanceof DeckLibraryFragment) {
+            holder.delete.setImageResource(R.drawable.ic_delete);
+        } else if (fragment instanceof DeckDownloadFragment) {
+            if (deck.isLocal()) {
+                holder.delete.setImageResource(R.drawable.baseline_download_done_24);
+            } else {
+                holder.delete.setImageResource(R.drawable.outline_file_download_24);
+            }
+        }
+
         holder.update(deckList.get(position));
+
     }
 
     @Override

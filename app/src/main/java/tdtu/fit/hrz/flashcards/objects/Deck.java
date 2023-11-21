@@ -15,8 +15,9 @@ public class Deck implements Serializable {
     public static String ACTION_EDIT_DECK = "tdtu.fit.hrz.flashcards.ACTION_EDIT_DECK";
 
     private String deckName;
-    private boolean isDownloaded;
-    private boolean isPrivate;
+    private boolean isLocal = true;
+    private boolean isPrivate = true;
+    private boolean isFromInternet = false;
     private Date createDate;
     private String creator;
     private Date lastModifiedDate;
@@ -82,14 +83,6 @@ public class Deck implements Serializable {
         this.deckName = deckName;
     }
 
-    public boolean isDownloaded() {
-        return isDownloaded;
-    }
-
-    public void setDownloaded(boolean downloaded) {
-        isDownloaded = downloaded;
-    }
-
     public boolean isPrivate() {
         return isPrivate;
     }
@@ -127,5 +120,21 @@ public class Deck implements Serializable {
         }
 
         return dueDateCards;
+    }
+
+    public boolean isFromInternet() {
+        return isFromInternet;
+    }
+
+    public void setFromInternet(boolean fromInternet) {
+        isFromInternet = fromInternet;
+    }
+
+    public boolean isLocal() {
+        return isLocal;
+    }
+
+    public void setLocal(boolean local) {
+        isLocal = local;
     }
 }

@@ -64,9 +64,11 @@ public class CardReviewActivity extends AppCompatActivity {
 
         //=========================================
         StorageManager storageManager = StorageManager.getInstance();
+        Intent intent = getIntent();
+        int selectedDeck = intent.getIntExtra("deck_pos", 0);
 
         model = new ViewModelProvider(this).get(CardReviewViewModel.class);
-        Deck deck = storageManager.getDecks().get(DeckAdapter.selectedDeckIdx);
+        Deck deck = storageManager.getDecks().get(selectedDeck);
         List<Card> cards = deck.getDueDateCard();
 
         deckCover.setImageDrawable(deck.getCoverImage());

@@ -32,6 +32,7 @@ import tdtu.fit.hrz.flashcards.R;
 import tdtu.fit.hrz.flashcards.activities.CardReviewActivity;
 import tdtu.fit.hrz.flashcards.activities.DeckEditActivity;
 import tdtu.fit.hrz.flashcards.controllers.DeckAdapter;
+import tdtu.fit.hrz.flashcards.controllers.StorageManager;
 import tdtu.fit.hrz.flashcards.objects.Card;
 import tdtu.fit.hrz.flashcards.objects.Deck;
 
@@ -46,9 +47,10 @@ public class DeckLibraryFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_deck_library, container, false);
 
+        StorageManager storageManager = StorageManager.getInstance();
 
         deckRCV = view.findViewById(R.id.deckRCV);
-        mRCVAdapter = new DeckAdapter(getContext(), loadDecks());
+        mRCVAdapter = new DeckAdapter(getContext(), storageManager.getDecks());
         deckRCV.setAdapter(mRCVAdapter);
         deckRCV.setLayoutManager(new LinearLayoutManager(getActivity()));
         // ========FAB =========================
@@ -81,55 +83,5 @@ public class DeckLibraryFragment extends Fragment {
             builder.show();
         }
         return super.onContextItemSelected(item);
-    }
-
-    private ArrayList<Deck> loadDecks(){
-        ArrayList<Deck> decks = new ArrayList<>();
-        Deck fcBird = new Deck(loadFlashcard());
-        Deck fcCat = new Deck(loadFlashcard());
-        Deck fcDog = new Deck(loadFlashcard());
-
-        @SuppressLint("SimpleDateFormat")
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-
-        fcBird.setCoverImage(getResources().getDrawable(R.drawable.birb, null));
-        fcBird.setDeckName("fucking birb");
-        fcBird.setCreator("not me");
-
-        fcCat.setCoverImage(getResources().getDrawable(R.drawable.huhcat, null));
-        fcCat.setDeckName("fucking cat");
-        fcCat.setCreator("me");
-
-        fcDog.setCoverImage(getResources().getDrawable(android.R.drawable.sym_def_app_icon, null));
-        fcDog.setDeckName("not fucking dog");
-        fcDog.setCreator("you");
-
-        try {
-            Date specificDate = dateFormat.parse("2021/12/20");
-
-            fcBird.setLastModifiedDate(specificDate);
-            fcCat.setLastModifiedDate(specificDate);
-            fcDog.setLastModifiedDate(specificDate);
-        } catch (ParseException e) {
-            e.printStackTrace(); // Handle the exception appropriately
-        }
-
-        decks.add(fcBird);
-        decks.add(fcCat);
-        decks.add(fcDog);
-
-
-        return decks;
-    }
-    private ArrayList<Card> loadFlashcard(){
-        ArrayList<Card> f = new ArrayList<>();
-        Random random = new Random();
-        for (int i = 0; i < random.nextInt(100); i++) {
-            f.add(new Card(
-                    "question " + (i+1),
-                    "answer" + (i+1))
-            );
-        }
-        return f;
     }
 }

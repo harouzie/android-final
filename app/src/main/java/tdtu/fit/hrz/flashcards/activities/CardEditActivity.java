@@ -56,21 +56,7 @@ public class CardEditActivity extends AppCompatActivity {
         cardTextInput = findViewById(R.id.cardSideText);
         flipButton =  findViewById(R.id.flipButton);
         cardQAText =  findViewById(R.id.cardQA);
-        //=======TOP APP BAR========================================================
-        topAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                int id  = item.getItemId();
-                if(id == R.id.action_delete_card){
-                    Toast.makeText(CardEditActivity.this, "delete card", LENGTH_SHORT).show();
-                    return true;
-                }
-                return false;
-            }
-        });
-        topAppBar.setNavigationOnClickListener(view -> {
-            super.onBackPressed();
-        });
+
         //========DECK and CARD Binding=======================================================
 
         Deck deck = DeckAdapter.deckList.get(DeckAdapter.selectedPos);
@@ -83,9 +69,10 @@ public class CardEditActivity extends AppCompatActivity {
 
         if (deck.getSize() != 0) {
             cardTextInput.setText(selectedCard.getQuestion());
+            cardTextInput.setHint("Your question");
         }
 
-        //===============================================================
+        //======FLIP Button=========================================================
         flipButton.setOnClickListener(view -> {
             if (selectedCard.isFlipped()){
                 // flipped = answer -> set to ques now
@@ -98,8 +85,28 @@ public class CardEditActivity extends AppCompatActivity {
                 cardQAText.setText(R.string.answer);
                 cardTextInput.setHint("Your answer");
                 cardTextInput.setText(selectedCard.getAnswer());
+                cardTextInput.clearFocus();
+                cardTextInput.requestFocus();
                 selectedCard.flip();
             }
+        });
+
+        //=======TOP APP BAR========================================================
+        topAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int id  = item.getItemId();
+                if(id == R.id.action_delete_card){
+                    DeckEditActivity.mRCVAdapter.removeCard();
+                    Toast.makeText(CardEditActivity.this, "Card deleted", LENGTH_SHORT).show();
+                    finish();
+                    return true;
+                }
+                return false;
+            }
+        });
+        topAppBar.setNavigationOnClickListener(view -> {
+            super.onBackPressed();
         });
     }
 

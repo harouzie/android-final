@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -34,7 +33,8 @@ import tdtu.fit.hrz.flashcards.viewmodels.DeckViewModel;
 
 public class DeckEditActivity extends AppCompatActivity {
 
-    private RecyclerView deckRCV;
+    private RecyclerView cardRCV;
+    public static CardRCVAdapter mRCVAdapter;
     private MaterialToolbar topAppBar;
     private TextInputEditText edtDeckName;
     private FloatingActionButton floatingActionButton;
@@ -52,7 +52,7 @@ public class DeckEditActivity extends AppCompatActivity {
         //========initialize views========================
         topAppBar = findViewById(R.id.topAppBar);
         edtDeckName = findViewById(R.id.deckName);
-        deckRCV = findViewById(R.id.cardRCV);
+        cardRCV = findViewById(R.id.cardRCV);
         floatingActionButton = findViewById(R.id.deckEditFAB);
         deckCover = findViewById(R.id.deckCover);
         deckNumcard  = findViewById(R.id.deckNumCard);
@@ -86,10 +86,10 @@ public class DeckEditActivity extends AppCompatActivity {
             deckNumcard.setText(String.format(Locale.ENGLISH, "%03d",deck.getSize()));
 
             //========RCV===================================
-            CardRCVAdapter mRCVAdapter = new CardRCVAdapter(
+            mRCVAdapter = new CardRCVAdapter(
                     this, R.layout.rcv_card, cards);
-            deckRCV.setAdapter(mRCVAdapter);
-            deckRCV.setLayoutManager(new LinearLayoutManager(this));
+            cardRCV.setAdapter(mRCVAdapter);
+            cardRCV.setLayoutManager(new LinearLayoutManager(this));
         }
 
     }

@@ -25,7 +25,6 @@ public class  CardRCVAdapter extends
     private LayoutInflater mInflater;
     private onCardClickListener onCardClickListener;
     private onCardLongClickListener onCardLongClickListener;
-
     public static int selectedCardIdx;
     public CardRCVAdapter(Context context, int resourceId, ArrayList<Card> flashcards) {
         this.context = context;
@@ -61,6 +60,12 @@ public class  CardRCVAdapter extends
 
     public onCardClickListener getOnCardClickListener() {
         return onCardClickListener;
+    }
+
+    public void removeCard() {
+        flashcards.remove(selectedCardIdx);
+        this.notifyItemChanged(selectedCardIdx);
+        selectedCardIdx = 0;
     }
 
     private interface onCardClickListener {

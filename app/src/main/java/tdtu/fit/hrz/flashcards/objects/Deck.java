@@ -27,13 +27,16 @@ public class Deck implements Serializable {
     public Deck(@NonNull ArrayList<Card> cards) {
         this.cards = cards;
         this.size = cards.size();
+        updateCardIndex();
+    }
+
+    public void updateCardIndex(){
         int i = 1;
         for(Card c: cards){
             c.setIndex(i);
             i++;
         }
     }
-
     public Date getCreateDate() {
         return createDate;
     }

@@ -9,11 +9,19 @@ import android.graphics.drawable.Drawable;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.reflect.TypeToken;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 import tdtu.fit.hrz.flashcards.R;
 import tdtu.fit.hrz.flashcards.objects.Card;
@@ -23,11 +31,19 @@ public class StorageManager {
 
     private static StorageManager instance;
     private static ArrayList<Deck> decks = new ArrayList<>();
-    public static Context context;
-    private StorageManager(){
+    private static List<String> jsonFiles = new ArrayList<>();
+    private static List<String> deckJsons = new ArrayList<>();
 
+    private static DeckSerializer deckSerializer;
+    public static Context context;
+
+    private StorageManager(){
         decks = loadDecks();
+        deckSerializer = new DeckSerializer();
+        writeToJson(decks);
+//        decks = loadFromJson();
     }
+
     public static StorageManager getInstance() {
         if(instance == null) {
             instance = new StorageManager();
@@ -35,6 +51,49 @@ public class StorageManager {
         return instance;
     }
 
+    private String normalizeName(String name){
+        name = name.toLowerCase();
+        name = name.replaceAll("[^a-zA-Z0-9\\s\\-_]", "");
+        name = name.replaceAll("\\s+", "_");
+        return name;
+    }
+    private void writeToJson(List<Deck> decks){
+
+        for(Deck deck: decks){
+            jsonFiles.add(normalizeName(deck.getDeckName()) + ".json");
+            deckJsons.add(deckSerializer.serializeDeck(deck));
+        }
+        int i = 0;
+        for (String fileName: jsonFiles){
+
+            try {
+                FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE);
+                fos.write(deckJsons.get(i).getBytes());
+                fos.close();
+                i++;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    private ArrayList<Deck> loadFromJson(){
+
+        ArrayList<Deck> loadedDecks = new ArrayList<>();
+        for (String fileName: jsonFiles) {
+            try {
+                FileInputStream fis = context.openFileInput(fileName);
+                Scanner sc = new Scanner(fis);
+                String data = sc.useDelimiter("\\A").next();
+
+                loadedDecks.add(deckSerializer.deserializeDeck(data));
+                fis.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return loadedDecks;
+    }
     public ArrayList<Deck> getDecks() {
         return decks;
     }
@@ -42,8 +101,6 @@ public class StorageManager {
     public void setDecks(ArrayList<Deck> decks) {
         StorageManager.decks = decks;
     }
-
-
     @SuppressLint("UseCompatLoadingForDrawables")
     private ArrayList<Deck> loadDecks(){
         ArrayList<Deck> decks = new ArrayList<>();

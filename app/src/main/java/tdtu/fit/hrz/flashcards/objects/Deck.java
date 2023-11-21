@@ -4,12 +4,11 @@ import android.graphics.drawable.Drawable;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.annotations.Expose;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 public class Deck implements Serializable {
     public static String ACTION_CREATE_DECK = "tdtu.fit.hrz.flashcards.ACTION_CREATE_DECK";
     public static String ACTION_EDIT_DECK = "tdtu.fit.hrz.flashcards.ACTION_EDIT_DECK";
@@ -22,7 +21,9 @@ public class Deck implements Serializable {
     private String creator;
     private Date lastModifiedDate;
     private int size;
+    @Expose(serialize = false)
     private Drawable coverImage;
+    public int coverId;
     private ArrayList<Card> cards;
 
     public Deck(@NonNull ArrayList<Card> cards) {
